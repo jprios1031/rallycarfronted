@@ -1,0 +1,65 @@
+@extends('plantilla')
+
+@section('titulo', 'Lista de Vehículos')
+
+@section('contenido')
+<div class="container">
+    <h2>Listado de Vehículos</h2>
+
+    <a href="{{ route('vehiculo.create') }}" class="btn crear">
+        <button>➕ Registrar nuevo vehículo</button>
+    </a>
+
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Placa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Usuario</th> {{-- 👈 Nueva columna --}}
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($vehiculos as $vehiculo)
+            <tr>
+                <td>{{ $vehiculo['id'] }}</td>
+                <td>{{ $vehiculo['placa'] }}</td>
+                <td>{{ $vehiculo['marca'] }}</td>
+                <td>{{ $vehiculo['modelo'] }}</td>
+
+                {{-- Mostrar nombre del usuario asociado --}}
+                <td>
+    @if(!empty($vehiculo['user']))
+        {{ $vehiculo['user']['name'] }} <br>
+        <small>{{ $vehiculo['user']['email'] }}</small>
+    @else
+        <em>Sin asignar</em>
+    @endif
+</td>
+
+
+                <td class="acciones">
+                    <a href="{{ route('vehiculo.edit', $vehiculo['id']) }}" class="btn editar">
+                        <button>Editar</button>
+                    </a>
+
+                    <form action="{{ route('vehiculo.destroy', $vehiculo['id']) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn eliminar" onclick="return confirm('¿Deseas eliminar este vehículo?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <a href="{{ route('dashboard') }}">
+        <button style="background-color: #e84444ff; margin-top: 10px;">Volver al Dashboard</button>
+    </a>
+</div>
+@endsection
