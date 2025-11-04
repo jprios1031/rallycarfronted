@@ -36,11 +36,12 @@
             <label>Modelo:</label>
             <input type="text" name="modelo" value="{{ $vehiculo['modelo'] ?? '' }}" required><br>
 
-            <button type="submit">Actualizar vehículo</button>
+            <button type="submit" class="btn_editar">Actualizar vehículo</button>
         </form>
+        <br>
 
         <a href="{{ route('vehiculo.index') }}">
-            <button style="background-color: #e84444ff; margin-top: 10px;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
     </div>
 </main>

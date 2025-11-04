@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo') | RallyCar</title>
+        <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-
-        /* === BASE === */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f3f4f6;
@@ -19,16 +20,29 @@
             text-align: center;
         }
 
-        /* === HEADER === */
+        
         header {
             background-color: #1E40AF;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 15px 25px;
             color: white;
             position: relative;
         }
+   
+ .tabla {
+    border-collapse: collapse;  /* ya tenías bordes */
+    margin: 0 auto;             /* centra la tabla horizontalmente */
+}
+
+.tabla th, .tabla td {
+    border: 1px solid black;
+    padding: 10px 10px;
+    text-align: center;         /* centra el contenido horizontalmente */
+    vertical-align: center;     /* centra verticalmente */
+}
+
 
         .gear {
             width: 70px;
@@ -45,7 +59,7 @@
             font-weight: bold;
         }
 
-        /* === BOTÓN HAMBURGUESA === */
+        
         .menu-toggle {
             display: none;
             font-size: 26px;
@@ -55,9 +69,42 @@
             cursor: pointer;
         }
 
-        /* === SIDEBAR === */
+        
+        .logout-btn {
+            background-color: #EF4444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+             .btn_eliminar {
+            background-color: #ED852F;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+         .btn_editar {
+            background-color: #4C2FED;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background-color: #DC2626;
+        }
+
+        
         .sidebar {
-            width: 200px;
+            width: 220px;
             background-color: #E0F2FE;
             position: fixed;
             top: 0;
@@ -69,33 +116,36 @@
         }
 
         .sidebar a {
-            display: block;
-            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 25px;
             text-decoration: none;
             color: #333;
-            font-weight: 700;
-            transition: background 0.3s, color 0.3s;
-            text-align: left;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
 
-        
-           
+        .sidebar a i {
+            font-size: 18px;
+            color: #1E40AF;
         }
 
         .sidebar a:hover {
-            background-color: #BFDBFE;
-            color: #4b55e0;
+            background-color: #black;
+            color: #1E3A8A;
+            transform: translateX(25px);
         }
 
-     
-
         main {
-            margin-left: 230px;
-            padding: 30px;
+            margin-left: 200px;
+            padding: 100px;
             background-color: #f9fafb;
             flex: 1;
         }
 
-        /* === FOOTER === */
+        
         footer {
             background-color: #1E3A8A;
             color: white;
@@ -103,27 +153,21 @@
             padding: 15px 10px;
             font-size: 14px;
         }
-        .redes-sociales a {
-            color: white;
-           justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
+
         .redes-sociales a {
             display: inline-block;
             color: white;
             margin: 0 5px;
-            font-size: 18px;
+            font-size: 28px;
             transition: color 0.3s;
-            text-decoration: none;
-}
+            text-decoration: dotted;
+        }
 
         .redes-sociales a:hover {
             color: #FFB800;
         }
 
-
-        /* === RESPONSIVE === */
+        
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
@@ -143,7 +187,6 @@
                 padding: 20px;
             }
 
-            /* Fondo oscuro detrás del menú */
             .overlay {
                 position: fixed;
                 top: 0;
@@ -164,32 +207,34 @@
 <body>
 
     <header>
-        <!-- Botón hamburguesa (solo visible en móvil) -->
+        
         <button class="menu-toggle"><i class="fas fa-bars"></i></button>
 
+        
         <div style="text-align: center; flex: 1;">
             <img src="{{ asset('imagenes/engranajes.png') }}" alt="Engranaje" class="gear">
             <h1>Bienvenido a <span class="marca">RallyCar</span></h1>
         </div>
 
+        
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" style="background-color: #EF4444; color: white; padding: 10px 15px; border-radius: 6px; border: none; cursor: pointer;">
-                Cerrar sesión
+            <button type="submit" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar sesión
             </button>
         </form>
     </header>
 
-    <!-- Sidebar -->
+    
     <aside class="sidebar">
-        <a href="{{ route('dashboard') }}">🏠 Dashboard</a>
-        <a href="{{ route('vehiculo.index') }}">🚗 Vehículos</a>
-        <a href="{{ route('usuario.index') }}">👥 Usuarios</a>
-        <a href="{{ route('novedad.index') }}">🧰 Novedades</a>
-        <a href="{{ route('ventas.index') }}">💲 Ventas</a>
+        <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="{{ route('vehiculo.index') }}"><i class="fas fa-car"></i> Vehículos</a>
+        <a href="{{ route('usuario.index') }}"><i class="fas fa-users"></i> Usuarios</a>
+        <a href="{{ route('novedad.index') }}"><i class="fas fa-wrench"></i> Novedades</a>
+        <a href="{{ route('ventas.index') }}"><i class="fas fa-cash-register"></i> Ventas</a>
     </aside>
 
-    <!-- Fondo oscuro detrás del menú -->
+    
     <div class="overlay"></div>
 
     <main>
@@ -208,19 +253,19 @@
     </footer>
 
     <script>
-        const menuBtn = document.querySelector('.menu-toggle');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.overlay');
+            const menuBtn = document.querySelector('.menu-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.overlay');
 
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
 
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
     </script>
 
 </body>

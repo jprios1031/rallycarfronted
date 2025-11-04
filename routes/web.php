@@ -35,11 +35,10 @@ Route::middleware(['web'])->group(function () {
         Route::resource('vehiculo', VehiculoController::class)->except(['show']);
         Route::resource('usuario', UsuarioController::class)->except(['show']);
         Route::resource('novedad', NovedadController::class)->except(['show']);
-<<<<<<< HEAD
-        Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
+Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
 
-=======
->>>>>>> 581e377bdac56f3a27ae114870c37facfb40b652
+
+
     });
 
     // CLIENTE

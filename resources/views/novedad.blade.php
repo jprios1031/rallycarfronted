@@ -3,7 +3,7 @@
 @section('titulo', 'Novedades')
 
 @section('contenido')
-<main>
+<main style="text-align: center; align-items: center;">
     <div class="login-box">
         <h2>Novedades</h2>
 
@@ -43,13 +43,13 @@
                     <div style="margin-top: 10px;">
                         @if(isset($novedad['id']))
                      <a href="{{ route('novedad.edit', ['novedad' => $novedad['id']]) }}">
-    <button>Editar</button>
+    <button class="btn_editar">Editar</button>
 </a>
 
 <form action="{{ route('novedad.destroy', ['novedad' => $novedad['id']]) }}" method="POST" style="display:inline">
     @csrf
     @method('DELETE')
-    <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta novedad?')">Borrar</button>
+    <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta novedad?')" class="btn_eliminar">Borrar</button>
 </form>
 
 
@@ -63,11 +63,12 @@
 
         <br>
         <a href="{{ route('novedad.create') }}">
-            <button style="background-color: #3b44c1; margin-top: 10px;">Crear Novedad</button>
+            <button class="btn_editar">Crear Novedad</button>
         </a>
         <br>
+        <br>
         <a href="{{ route('dashboard') }}">
-            <button style="background-color: #e84444ff; margin-top: 10px;">Volver al Dashboard</button>
+            <button class="logout-btn">Volver al Dashboard</button>
         </a>
     </div>
 </main>

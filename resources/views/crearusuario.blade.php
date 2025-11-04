@@ -41,12 +41,12 @@
     </select>
     <br><br>
 
-    <button type="submit">Registrar</button>
+    <button type="submit" class="btn_editar">Registrar</button>
 </form>
 
         <br>
         <a href="{{ route('usuario.index') }}">
-            <button style="background-color: #e84444ff;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
     </div>
 </main>

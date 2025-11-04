@@ -6,7 +6,7 @@
 <main>
     <div class="login-box">
         <h2>Editar Usuario</h2>
-        <form action="{{ route('usuario.update', ['id' => $usuario['id']]) }}" method="POST">
+        <form action="{{ route('usuario.update', ['usuario' => $usuario['id']]) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -29,11 +29,11 @@
                 @endforeach
             </select><br><br>
 
-            <button type="submit">Actualizar</button>
+            <button type="submit" class="btn_editar">Actualizar</button>
         </form>
-
+        <br>
         <a href="{{ route('usuario.index') }}">
-            <button style="background-color: #e84444ff;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
     </div>
 </main>

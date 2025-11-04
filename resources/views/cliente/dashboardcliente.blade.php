@@ -30,13 +30,7 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
             @foreach($novedades as $novedad)
                 <div class="novedad-card" 
-                     style="background: #fff; 
-                            border-radius: 12px; 
-                            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-                            overflow: hidden; 
-                            display: flex; 
-                            flex-direction: column; 
-                            transition: transform 0.2s;">
+                     style="background: #fff;border-radius: 12px;box-shadow: 0 2px 10px rgba(0,0,0,0.1);overflow:hidden;display:flex;flex-direction: column;transition: transform 0.2s;">
                     <div style="padding: 20px; flex-grow: 1;">
                         <h3 style="margin-top: 0; color: #333; font-size: 1.2rem;">{{ $novedad['titulo'] }}</h3>
                         <p style="color: #555; font-size: 0.95rem;">{{ $novedad['descripcion'] }}</p>
@@ -44,7 +38,7 @@
 
                     <!-- Mostrar imágenes -->
                     @if(!empty($novedad['imagenes']) && count($novedad['imagenes']) > 0)
-                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 10px; background: #fafafa;">
+                        <div style="display: flex;flex-wrap: wrap;justify-content: center;gap: 12px;padding: 15px;background: #fafafa;border-radius: 10px;">
                             @foreach($novedad['imagenes'] as $img)
                                 @php
                                     $nombreImagen = basename($img['ruta']);
@@ -52,7 +46,7 @@
                                <img src="{{ 'http://127.0.0.1:8000/storage/imagenes_novedades/' . $nombreImagen }}"
 
                                      alt="Imagen Novedad" 
-                                     style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px;">
+                                     style="flex: 1 1 300px; max-width: 350px;overflow: hidden;border-radius: 10px;box-shadow: 0 2px 6px rgba(0,0,0,0.1);background: #fff;">
                             @endforeach
                         </div>
                     @else

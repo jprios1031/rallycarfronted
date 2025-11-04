@@ -4,20 +4,23 @@
 
 @section('contenido')
 
-<div class="container">
+<div style="text-align: center;">
     <h2>Listado de Ventas</h2>
 
     <a href="{{ route('ventas.create') }}" class="btn crear">
-        <button>➕ Registrar nueva venta</button>
+        <button class="btn_editar"> Registrar nueva venta</button>
     </a>
+    <br>
 
+    <br>
     <table class="tabla">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>tipo</th>
-                <th>descripcion</th>
-                <th>precio</th>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Acciones</th>
                 
             </tr>
         </thead>
@@ -33,13 +36,13 @@
 
                 <td class="acciones">
                     <a href="{{ route('ventas.edit', $venta['id']) }}" class="btn editar">
-                        <button>Editar</button>
+                        <button class="btn_editar">Editar</button>
                     </a>
 
                     <form action="{{ route('ventas.destroy', $venta['id']) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn eliminar" onclick="return confirm('¿Deseas eliminar este vehículo?')">
+                        <button type="submit" class="btn_eliminar" onclick="return confirm('¿Deseas eliminar este vehículo?')">
                             Eliminar
                         </button>
                     </form>
@@ -48,9 +51,9 @@
             @endforeach
         </tbody>
     </table>
-
+    <br>    
     <a href="{{ route('dashboard') }}">
-        <button style="background-color: #e84444ff; margin-top: 10px;">Volver al Dashboard</button>
+        <button class="logout-btn">Volver al Dashboard</button>
     </a>
 </div>
 

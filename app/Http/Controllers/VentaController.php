@@ -96,6 +96,8 @@ class VentaController extends Controller
 
         return back()->with('error', 'No se pudo eliminar la venta.');
     }
+ 
+
 }
 
 

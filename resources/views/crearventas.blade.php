@@ -21,12 +21,12 @@
     <label>precio:</label>
     <input type="number" step="1000" name="precio" required>
 
-    <button type="submit">Registrar venta</button>
+    <button type="submit" class="btn_editar">Registrar venta</button>
 </form>
 
         <br>
         <a href="{{ route('ventas.index') }}">
-            <button style="background-color: #e84444ff;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
 
     </div>

@@ -28,13 +28,12 @@
             <option value="{{ $usuario['id'] }}">{{ $usuario['name'] }}</option>
         @endforeach
     </select>
-
-    <button type="submit">Registrar Vehículo</button>
+<button type="submit" class="btn_editar">Registrar Vehículo</button>
 </form>
 
         <br>
         <a href="{{ route('vehiculo.index') }}">
-            <button style="background-color: #e84444ff;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
 
     </div>

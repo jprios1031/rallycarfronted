@@ -22,38 +22,13 @@
             <label>Precio:</label>
             <input type="number" step="1000" name="precio" value="{{ $ventas['precio'] ?? '' }}" required><br>
 
-            <button type="submit">Actualizar Venta</button>
+            <button type="submit" class="btn_editar">Actualizar Venta</button>
         </form>
 
         <a href="{{ route('ventas.index') }}">
-            <button style="background-color: #e84444ff; margin-top: 10px;">Volver</button>
+            <button class="btn_eliminar">Volver</button>
         </a>
     </div>
 </main>
 
-<style>
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    background-color: #4c6ef5;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #3b5bdb;
-}
-</style>
 @endsection

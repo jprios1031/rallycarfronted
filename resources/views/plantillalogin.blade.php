@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo') | RallyCar</title>
+            <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
@@ -27,8 +29,7 @@
 
         /* === HEADER === */
         header {
-            background-color: #7BE0E3;
-            text-align: center;
+            background-color: #1E40AF;            text-align: center;
             padding: 20px 0;
             color: white;
             position: relative;
@@ -92,7 +93,7 @@
 
         /* === FOOTER === */
         footer {
-            background-color: #ff1e1e;
+            background-color: #1E3A8A;
             color: #fff;
             text-align: center;
             padding: 15px 10px;

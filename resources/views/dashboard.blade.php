@@ -96,7 +96,7 @@
 {{-- Botones de creación y volver --}}
 <div style="margin-top: 30px; text-align: center;">
     <a href="{{ route('novedad.index') }}">
-        <button style="padding: 10px 20px; background-color: #2196f3; color: white; border: none; border-radius: 5px; cursor: pointer;">Crear Novedad</button>
+        <button class="btn_editar">Crear Novedad</button>
    </a>
     </div>
 
