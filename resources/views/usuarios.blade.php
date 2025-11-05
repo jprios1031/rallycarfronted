@@ -10,7 +10,8 @@
     </a>
     <br>
     <br>
-    <table class="tabla">
+      <div style="overflow-x:auto;">
+        <table class="tabla" style="width:100%; min-width:600px;">
         <thead>
             <tr>
                 <th>ID</th>
@@ -39,6 +40,8 @@
                     <a href="{{ route('usuario.edit', $usuario['id']) }}" >
                         <button class="btn_editar">Editar</button>
                     </a>
+                    <br>
+                    <br>
                     <form action="{{ route('usuario.destroy', $usuario['id']) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
@@ -49,6 +52,9 @@
             @endforeach
         </tbody>
     </table>
+    <br>
+    </div>
+    <br>
     <br>
     <a href="{{ route('dashboard') }}">
         <button class="logout-btn">Volver al Dashboard</button>

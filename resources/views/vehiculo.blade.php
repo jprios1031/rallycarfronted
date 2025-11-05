@@ -11,7 +11,8 @@
     </a>
 <br> 
 <br>
-    <table class="tabla">
+<div style="overflow-x:auto;">
+    <table class="tabla" style="width:100%; min-width:600px;">
         <thead>
             <tr>
                 <th>ID</th>
@@ -45,7 +46,8 @@
                     <a href="{{ route('vehiculo.edit', $vehiculo['id']) }}" class="btn editar">
                         <button class="btn_editar">Editar</button>
                     </a>
-
+                        <br>
+                        <br>
                     <form action="{{ route('vehiculo.destroy', $vehiculo['id']) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
@@ -60,7 +62,7 @@
     </table>
     <br>
     <br>
-    
+    </div>
     <a href="{{ route('dashboard') }}">
         <button class="logout-btn">Volver al Dashboard</button>
     </a>

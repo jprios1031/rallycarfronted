@@ -57,38 +57,14 @@
             font-weight: bold;
         }
 
-        /* === SIDEBAR === */
-        .sidebar {
-            width: 230px;
-            background-color: #fff;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
-            padding-top: 150px;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 14px 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #eceffe;
-            color: #4b55e0;
-        }
+       
 
         /* === MAIN === */
         main {
-            margin-left: 230px;
-            padding: 30px;
-            background-color: #f9fafb;
+            margin-left: 20px;
+            padding: 10px;
             flex: 1;
-            min-height: 80vh;
+            min-height: 8vh;
         }
 
         /* === FOOTER === */

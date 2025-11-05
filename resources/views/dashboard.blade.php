@@ -4,7 +4,9 @@
 
 @section('contenido')
 <h2 style="text-align: center; margin-bottom: 20px;">Bienvenido al Dashboard</h2>
+<br>
 <form action="{{ route('dashboard') }}" method="GET" style="margin-bottom: 10px; text-align:center;">
+    <br>
     <label for="fecha_inicio">Desde:</label>
     <input type="date" name="fecha_inicio" value="{{ $fechaInicio ?? '' }}">
     <label for="fecha_fin">Hasta:</label>

@@ -12,6 +12,8 @@ class DashboardController extends Controller
 
     public function index(Request $request) 
     {
+
+        
         $token = Session::get('token');
         
 
@@ -50,11 +52,6 @@ class DashboardController extends Controller
                        $gasto['updated_at'] <= $fechaFin;
             })->values()->all();
         }
-
-
-
-
-
 
         $totalVehiculo = count($vehiculos);
         $sumaVehiculo = collect($vehiculos)->sum('cantidad');

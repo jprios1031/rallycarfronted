@@ -13,7 +13,8 @@
     <br>
 
     <br>
-    <table class="tabla">
+    <div style="overflow-x:auto;">
+    <table class="tabla" style="width:100%; min-width:600px;">
         <thead>
             <tr>
                 <th>Id</th>
@@ -38,8 +39,8 @@
                     <a href="{{ route('gastos.edit', $gasto['id']) }}" class="btn editar">
                         <button class="btn_editar">Editar</button>
                     </a>
-
-                    <form action="{{ route('gastos.destroy', $gasto['id']) }}" method="POST" style="display:inline;">
+                        <br>
+                        <br>                    <form action="{{ route('gastos.destroy', $gasto['id']) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn_eliminar" onclick="return confirm('¿Deseas eliminar este vehículo?')">
@@ -52,9 +53,11 @@
         </tbody>
     </table>
     <br>    
-    <a href="{{ route('dashboard') }}">
+</div>
+</div>
+<br>
+<br>
+<a href="{{ route('dashboard') }}">
         <button class="logout-btn">Volver al Dashboard</button>
     </a>
-</div>
-
 @endsection
