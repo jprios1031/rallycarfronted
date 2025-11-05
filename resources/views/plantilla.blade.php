@@ -173,7 +173,8 @@
             background-color: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: left;
+            text-align: center;
+            align-items: center;
         }
         .formulario h2 {
             text-align: center;

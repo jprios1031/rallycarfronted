@@ -4,7 +4,7 @@
 
 @section('contenido')
 <main>
-    <div style="display:flex; justify-content:center; align-items:center; min-height:80vh;">
+    <div>
         <form action="{{ route('novedad.store') }}" method="POST" enctype="multipart/form-data"
            class="formulario">
 
@@ -18,15 +18,14 @@
                 <option value="{{ $vehiculo['id'] }}">{{ $vehiculo['placa'] }} - {{ $vehiculo['marca'] }}</option>
                 @endforeach
             </select>
-
-            {{-- Título --}}
+            <br>
             <label for="titulo">Título</label>
             <input type="text" name="titulo" id="titulo" required>
-
-            {{-- Descripción --}}
+            <br>
             <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" rows="3" required></textarea>
-
+            <br>
+             <input name="descripcion" id="descripcion" rows="8" required>
+            <br>
             {{-- Imagen --}}
             <label for="imagen">Imagen</label>
                 <input type="file" name="imagenes[]" id="imagenes" accept="image/*" multiple>
