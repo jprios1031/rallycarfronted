@@ -10,7 +10,7 @@ class VentaController extends Controller
 {
        public function index()
 {
-                    $token = Session::get('token');
+    $token = Session::get('token');
 
     $ventasResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/ventas');
     $ventas = $ventasResponse->successful() ? $ventasResponse->json() : [];

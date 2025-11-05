@@ -9,36 +9,29 @@
 
     <style>
         /* === ESTILOS GENERALES === */
-        body {
+           body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f3f4f6;
             margin: 0;
-            display: flex;
             flex-direction: column;
             min-height: 100vh;
             text-align: center;
         }
 
-        h1,
-        h2,
-        h3 {
-            margin: 0;
-        }
-
-        /* === HEADER === */
+        
         header {
-            background-color: #7BE0E3;
-            text-align: center;
-            padding: 20px 0;
+            background-color: #1E40AF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
             color: white;
             position: relative;
         }
 
         .gear {
-            width: 90px;
+            width: 70px;
             animation: spin 4s linear infinite;
-            display: block;
-            margin: 0 auto 10px;
         }
 
         @keyframes spin {
@@ -56,70 +49,34 @@
             font-weight: bold;
         }
 
-        /* === SIDEBAR === */
-        .sidebar {
-            width: 230px;
-            background-color: #fff;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
-            padding-top: 150px;
-        }
 
-        .sidebar a {
-            display: block;
-            padding: 14px 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #eceffe;
-            color: #4b55e0;
-        }
-
-        /* === MAIN === */
-        main {
-            margin-left: 230px;
-            padding: 30px;
-            background-color: #f9fafb;
-            flex: 1;
-            min-height: 80vh;
-        }
+      main {
+    
+    padding: 100px;
+    background-color: #f9fafb;
+    flex: 1;
+}
 
         /* === FOOTER === */
         footer {
-            background-color: #ff1e1e;
-            color: #fff;
+            background-color: #1E3A8A;
+            color: white;
             text-align: center;
             padding: 15px 10px;
-            margin-top: auto;
             font-size: 14px;
         }
 
-        .footer .redes-sociales {
-            margin: 8px 0;
-        }
-
-        .footer .redes-sociales a {
+        .redes-sociales a {
+            display: inline-block;
             color: white;
-            margin: 0 8px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: transform 0.2s, color 0.2s;
+            margin: 0 5px;
+            font-size: 28px;
+            transition: color 0.3s;
+            text-decoration: dotted;
         }
 
-        .footer .redes-sociales a:hover {
-            color: #1e3a8a;
-            transform: scale(1.2);
-        }
-
-        .ubicacion {
-            font-size: 12px;
-            margin-top: 5px;
+        .redes-sociales a:hover {
+            color: #FFB800;
         }
 
         /* === FORMULARIOS === */

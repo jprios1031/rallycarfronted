@@ -6,7 +6,7 @@
 <main>
     <div style="display:flex; justify-content:center; align-items:center; min-height:80vh;">
         <form action="{{ route('novedad.store') }}" method="POST" enctype="multipart/form-data"
-            style="display:flex; flex-direction:column; gap:10px; width:350px;">
+           class="formulario">
 
             @csrf
             <h2>Crear Novedad</h2>

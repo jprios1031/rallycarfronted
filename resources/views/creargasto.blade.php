@@ -7,9 +7,9 @@
 
 <main>
     <div class="login-box">
-        <h2>Crear Venta</h2>
+        <h2>Crear Gasto</h2>
 
-       <form action="{{ route('registrarventa.store') }}" method="POST" class="formulario">
+       <form action="{{ route('registrargasto.store') }}" method="POST" class="formulario">
     @csrf
 
     <label>tipo:</label>
@@ -21,11 +21,11 @@
     <label>precio:</label>
     <input type="number" step="1000" name="precio" required>
 
-    <button type="submit" class="btn_editar">Registrar venta</button>
+    <button type="submit" class="btn_editar">Registrar gasto</button>
 </form>
 
         <br>
-        <a href="{{ route('ventas.index') }}">
+        <a href="{{ route('gastos.index') }}">
             <button class="btn_eliminar">Volver</button>
         </a>
 

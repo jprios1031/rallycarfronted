@@ -5,7 +5,7 @@ use App\Http\Controllers\{
     VentaController, InicioController, InicioclienteController,
     DashboardController, DashboardClienteController, UsuarioController,
     VehiculoController, NovedadController, NovedadclienteController,
-    PrincipalController, RegisterController, RegisterclienteController
+    PrincipalController, RegisterController, RegisterclienteController,GastoController
 };
 use App\Http\Middleware\{AdminMiddleware, ClienteMiddleware};
 
@@ -35,8 +35,9 @@ Route::middleware(['web'])->group(function () {
         Route::resource('vehiculo', VehiculoController::class)->except(['show']);
         Route::resource('usuario', UsuarioController::class)->except(['show']);
         Route::resource('novedad', NovedadController::class)->except(['show']);
-Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
-
+        Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
+        Route::resource('gastos', GastoController::class)->except(['show']);
+        Route::post('/registrargasto', [GastoController::class, 'store'])->name('registrargasto.store');
 
 
     });

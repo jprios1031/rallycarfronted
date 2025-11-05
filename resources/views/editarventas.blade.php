@@ -7,7 +7,7 @@
     <div class="login-box">
         <h2>Editar Venta</h2>
 
-        <form action="{{ route('ventas.update', $ventas['id']) }}" method="POST">
+        <form action="{{ route('ventas.update', $ventas['id']) }}" method="POST" class="formulario">
             @csrf
             @method('PUT')
            

@@ -7,7 +7,7 @@
     <div class="login-box">
         <h2>Crear Usuario</h2>
 
-   <form action="{{ route('usuario.store') }}" method="POST">
+   <form action="{{ route('usuario.store') }}" method="POST" class="formulario">
     @csrf
     <label>Nombre:</label>
     <input type="text" name="name" required><br><br>

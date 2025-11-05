@@ -120,7 +120,7 @@ $httpRequest->attach('vehiculo_id', $request->vehiculo_id);
         $response = Http::withToken($token)->delete("http://127.0.0.1:8000/api/novedades/{$id}");
 
         if ($response->successful()) {
-            return redirect()->route('dashboard')->with('success', 'Novedad eliminada correctamente');
+            return redirect()->route('novedad.index')->with('success', 'Novedad eliminada correctamente');
         }
 
         return back()->with('error', 'No se pudo eliminar la novedad');

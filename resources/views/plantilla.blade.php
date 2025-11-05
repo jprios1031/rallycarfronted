@@ -166,7 +166,42 @@
         .redes-sociales a:hover {
             color: #FFB800;
         }
+        .formulario{
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .formulario h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        formulario label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
 
+.formulario input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.formulario button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
         
         @media (max-width: 768px) {
             .menu-toggle {
@@ -201,6 +236,8 @@
             .overlay.active {
                 display: block;
             }
+            
+            
         }
     </style>
 </head>
@@ -232,6 +269,7 @@
         <a href="{{ route('usuario.index') }}"><i class="fas fa-users"></i> Usuarios</a>
         <a href="{{ route('novedad.index') }}"><i class="fas fa-wrench"></i> Novedades</a>
         <a href="{{ route('ventas.index') }}"><i class="fas fa-cash-register"></i> Ventas</a>
+        <a href="{{ route('gastos.index') }}"><i class="fa-solid fa-sack-xmark"></i> Gastos</a>
     </aside>
 
     
