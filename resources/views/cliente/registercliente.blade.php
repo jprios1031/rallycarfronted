@@ -2,7 +2,7 @@
 @section('contenido')
 
 <main>
-    <div class="login-box">
+    <div class="formulario">
         <h2>Registro de Usuario</h2>
         <form action="{{ route('registercliente.store') }}" method="POST">
     @csrf
@@ -17,12 +17,12 @@
      <label>Confirmar Contraseña:</label>
     <input type="password" name="password_confirmation" required><br><br>
 
-    <button type="submit">Registrarse</button>
+    <button type="submit" class="btn_editar">Registrarse</button>
 </form>
 
         <br>
         <a href="{{ route('iniciocliente.index') }}">
-            <button style="background-color: #e84444ff" ;>Ir aLogin</button>
+            <button class="logout-btn";>Ir aLogin</button>
         </a>
 
 

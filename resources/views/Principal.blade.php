@@ -12,7 +12,7 @@
     <style>
         /* Fondo con transición animada entre azul y rojo */
         body {
-            background: linear-gradient(-45deg, #174dd7, #ff1e1e, #174dd7, #ff1e1e);
+            background: linear-gradient(-45deg, #4A75F0, #E36464, #4570DE, #E86868);
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
             color: white;
@@ -42,8 +42,8 @@
         /* Header con botones arriba a la derecha */
         .header {
             display: flex;
-            justify-content: flex-end;
-            padding: 20px 40px;
+            justify-content: center;
+            padding: 50px 50px;
             position: relative;
             z-index: 10;
         }
@@ -164,7 +164,7 @@
         }
 
         .footer {
-            background-color: #ff1e1eff;
+            /* background-color: #ff1e1eff; */
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -218,18 +218,20 @@
 
 <body>
 
-    <div class="header">
-        <div class="botones">
-                        <a href="{{ route('iniciocliente.index') }}" class="btn btn-primario">Cliente</a>
-
-            <a href="{{ route('inicio.index') }}" class="btn btn-secundario">Admin</a>
-        </div>
+    
     </div>
 
     <div class="inicio-container">
         <img src="{{ asset('imagenes/logo1.png') }}" alt="Logo RallyCar" class="logo">
         <h1>Bienvenido a <span class="marca">Rallycars</span></h1>
         <p>Tu taller de confianza para diagnósticos, mantenimiento y reparaciones completas.</p>
+    </div>
+     <div class="header">
+        <div class="botones">
+                        <a href="{{ route('iniciocliente.index') }}" class="btn btn-primario">Cliente</a>
+
+            <a href="{{ route('inicio.index') }}" class="btn btn-secundario">Admin</a>
+        </div>
     </div>
 
     <section class="servicios">

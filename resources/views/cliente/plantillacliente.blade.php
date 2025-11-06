@@ -8,26 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* === ESTILOS GENERALES === */
-           body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f4f6;
-            margin: 0;
-            flex-direction: column;
-            min-height: 100vh;
-            text-align: center;
-        }
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F9FAFB;
+    color: #111827;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+}
 
-        
-        header {
-            background-color: #1E40AF;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-            color: white;
-            position: relative;
-        }
+header {
+    background-color: #1E3A8A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    color: white;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
 
         .gear {
             width: 70px;
@@ -57,7 +59,6 @@
     flex: 1;
 }
 
-        /* === FOOTER === */
         footer {
             background-color: #1E3A8A;
             color: white;
@@ -79,7 +80,6 @@
             color: #FFB800;
         }
 
-        /* === FORMULARIOS === */
         form {
             background-color: white;
             max-width: 700px;
@@ -127,56 +127,80 @@
             border-color: #4b55e0;
             box-shadow: 0 0 5px rgba(75, 85, 224, 0.3);
         }
-.btn-eliminar {
-    background-color: #e84444;
+.logout-btn {
+    background-color: #EF4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 20px;
+    transition: all 0.3s ease;
+}
+
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.btn_eliminar {
+    background-color: #ED852F;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn_editar {
+    background-color: #3B82F6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+.formulario {
+    max-width: 420px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.formulario h2 {
+    color: #1E3A8A;
+    margin-bottom: 20px;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #CCC;
+}
+
+.formulario button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1E40AF;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: 0.3s;
 }
 
-.btn-eliminar:hover {
-    background-color: #c73535;
-    transform: scale(1.03);
+.formulario button:hover {
+    background-color: #1E3A8A;
 }
 
-.btn-eliminar:focus {
-    outline: none;
-}
-
-form[style*="display:inline"] {
-    background: transparent !important;
-}
-
-        button {
-            background-color: #4b55e0;
-            color: white;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        button:hover {
-            background-color: #3b44c1;
-            transform: scale(1.02);
-        }
-
-        .btn-secundario {
-            background-color: #f1f1f1;
-            color: #333;
-            margin-left: 10px;
-        }
-
-        .btn-secundario:hover {
-            background-color: #ddd;
-        }
-
-        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .sidebar {
                 display: none;
@@ -191,7 +215,6 @@ form[style*="display:inline"] {
                 width: 90%;
             }
         }
-        /* Sobrescribe formularios pequeños de botones */
 form[style*="display:inline"] {
     background-color: transparent !important;
     box-shadow: none !important;
@@ -199,7 +222,6 @@ form[style*="display:inline"] {
     margin: 0 !important;
     border: none !important;
 }
-/* ==== TARJETAS DE DASHBOARD ==== */
 .contenedor-tarjetas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -244,7 +266,6 @@ form[style*="display:inline"] {
     margin-top: 8px;
 }
 
-/* ==== COLORES ==== */
 .azul {
     background-color: #4b55e0;
 }
@@ -269,13 +290,131 @@ form[style*="display:inline"] {
     background-color: #6366f1;
 }
 
-/* ==== RESPONSIVE ==== */
 @media (max-width: 768px) {
     .tarjeta-info h1 {
         font-size: 26px;
     }
 }
+.dashboard-container {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #111827;
+    font-family: 'Poppins', sans-serif;
+}
 
+.user-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.user-section h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+.user-section h1 span {
+    color: #3B82F6;
+}
+.user-section .subtitulo {
+    color: #6B7280;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+.user-card {
+    background: linear-gradient(135deg, #f9fafb, #e0e7ff);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 25px;
+    margin-top: 25px;
+    display: inline-block;
+    text-align: left;
+}
+.user-info p {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #374151;
+}
+.user-info i {
+    color: #2563eb;
+    margin-right: 8px;
+}
+
+.novedades-section {
+    text-align: center;
+}
+.novedades-section h2 {
+    font-size: 1.8rem;
+    color: #1E3A8A;
+    margin-bottom: 30px;
+}
+.novedades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+.novedad-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+.novedad-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+.novedad-content {
+    padding: 20px;
+}
+.novedad-content h3 {
+    color: #1E40AF;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.novedad-content p {
+    color: #4B5563;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.imagenes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    background: #f9fafb;
+    padding: 15px;
+}
+.img-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.img-wrapper:hover {
+    transform: scale(1.05);
+}
+.img-wrapper img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 10px;
+    display: block;
+}
+
+.sin-imagenes, .sin-novedades {
+    color: #9CA3AF;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .user-card {
+        width: 100%;
+    }
+    .novedad-content h3 {
+        font-size: 1rem;
+    }
+}
 
     </style>
 </head>

@@ -21,11 +21,11 @@
 
            
 
-            <button type="submit">Registrar</button>
+            <button type="submit" class="btn_editar">Registrar</button>
         </form>
         <br>
         <a href="{{ route('inicio.index') }}">
-            <button style="background-color: #e84444ff" ;>Ir aLogin</button>
+            <button class="btn_eliminar">Ir aLogin</button>
         </a>
 
 

@@ -149,32 +149,46 @@
             box-shadow: 0 0 5px rgba(75, 85, 224, 0.3);
         }
 
-        button {
-            background-color: #47DE67;
+       .logout-btn {
+            background-color: #EF4444;
             color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
             border: none;
-            padding: 12px 18px;
-            border-radius: 6px;
-            font-size: 15px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            align-items: center;
+            font-weight: 600;
+        }
+             .btn_eliminar {
+            background-color: #ED852F;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+         .btn_editar {
+            background-color: #4C2FED;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        button:hover {
-            background-color: #3b44c1;
-            transform: scale(1.02);
+        .logout-btn:hover {
+            background-color: #DC2626;
         }
 
-        .btn-secundario {
-            background-color: #f1f1f1;
-            color: #333;
-            margin-left: 10px;
+        
+         .btn_eliminar:hover {
+            background-color: #D97706;
+        }
+         .btn_editar:hover {
+            background-color: #4338CA;
         }
 
-        .btn-secundario:hover {
-            background-color: #3b44c1;
-        }
 
         /* === RESPONSIVE === */
         @media (max-width: 768px) {

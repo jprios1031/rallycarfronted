@@ -27,17 +27,17 @@
             <label>Contraseña:</label>
             <input type="password" name="password" required><br><br>
 
-            <button type="submit">Ingresar</button>
+            <button type="submit" class="btn_editar">Ingresar</button>
         </form>
         <br>
         <a href="{{ route('register.showForm') }}">
-            <button style="background-color: #e84444ff;">Ir a Registarme</button>
+            <button class="btn_eliminar">Ir a Registarme</button>
         </a>
         <br>
         <br>
-
+        <br>
         <a href="{{ route('principal') }}">
-            <button style="background-color: #e84444ff;">ir a Inicio</button>
+            <button class="logout-btn">ir a Inicio</button>
         </a>
 
     </div>
