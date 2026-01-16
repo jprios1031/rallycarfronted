@@ -9,7 +9,7 @@
     <div class="login-box">
         <h2>Crear Venta</h2>
 
-       <form action="{{ route('registrarventa.store') }}" method="POST" class="formulario">
+       <form action="{{ route('ventas.store') }}" method="POST" class="formulario">
     @csrf
 
     <label>tipo:</label>
@@ -17,6 +17,9 @@
 
     <label>descripcion:</label>
     <input type="text" name="descripcion" required>
+   <label>Cantidad:</label>
+    <input type="number" name="cantidad" required>
+
 
     <label>precio:</label>
     <input type="number" step="1000" name="precio" required>

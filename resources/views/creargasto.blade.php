@@ -9,8 +9,9 @@
     <div class="login-box">
         <h2>Crear Gasto</h2>
 
-       <form action="{{ route('registrargasto.store') }}" method="POST" class="formulario">
+      <form action="{{ route('gastos.store') }}" method="POST" class="formulario">
     @csrf
+
 
     <label>tipo:</label>
     <input type="text" name="tipo" required>

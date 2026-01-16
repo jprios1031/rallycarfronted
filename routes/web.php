@@ -29,18 +29,26 @@ Route::middleware(['web'])->group(function () {
     Route::post('/logout-cliente', [InicioclienteController::class, 'logout'])->name('logoutcliente');
 
     // ADMIN
-    Route::middleware([AdminMiddleware::class])->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('ventas', VentaController::class)->except(['show']);
-        Route::resource('vehiculo', VehiculoController::class)->except(['show']);
-        Route::resource('usuario', UsuarioController::class)->except(['show']);
-        Route::resource('novedad', NovedadController::class);
-        Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
-        Route::resource('gastos', GastoController::class);
-        Route::post('/registrargasto', [GastoController::class, 'store'])->name('registrargasto.store');
+Route::middleware([AdminMiddleware::class])->group(function () {
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('gastos', GastoController::class)->except(['show']);
+
+    Route::get('/ventas/pdf/{id}', [VentaController::class, 'exportPdf'])
+     ->name('ventas.pdf');
+    Route::resource('ventas', VentaController::class)->except(['show']);
+    Route::resource('vehiculo', VehiculoController::class)->except(['show']);
+    Route::resource('usuario', UsuarioController::class)->except(['show']);
+    Route::resource('novedad', NovedadController::class);
+
+    // Route::post('/registrarventa', [VentaController::class, 'store'])->name('registrarventa.store');
 
 
-    });
+
+   
+    
+});
+
 
     // CLIENTE
     Route::middleware([ClienteMiddleware::class])->group(function () {

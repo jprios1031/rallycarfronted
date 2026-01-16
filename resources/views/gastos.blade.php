@@ -18,7 +18,8 @@
             >
             <button type="submit">Buscar</button>
         </form>
-    <br>
+
+     
 
 
     <a href="{{ route('gastos.create') }}" class="btn crear">

@@ -31,6 +31,7 @@
                     <th>Id</th>
                     <th>Tipo</th>
                     <th>Descripcion</th>
+                    <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Acciones</th>
                 </tr>
@@ -41,6 +42,7 @@
                     <td>{{ $venta['id'] }}</td>
                     <td>{{ $venta['tipo'] }}</td>
                     <td>{{ $venta['descripcion'] }}</td>
+                    <td>{{ $venta['cantidad'] }}</td>
                     <td>{{ $venta['precio'] }}</td>
                     <td class="acciones">
                         <a href="{{ route('ventas.edit', $venta['id']) }}" class="btn editar">
@@ -55,6 +57,15 @@
                                 Eliminar
                             </button>
                         </form>
+                        <br>
+                        <br>
+                        <a href="{{ route('ventas.pdf', $venta['id']) }}">
+
+
+                            <button>Generar PDF</button>
+                        </a>
+
+                        <br>
                     </td>
                 </tr>
                 @endforeach

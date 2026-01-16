@@ -22,6 +22,9 @@ class GastoController extends Controller
     $gastos = $gastosResponse->successful() ? $gastosResponse->json() : [];
 
     return view('gastos', compact('gastos', 'search'));
+
+
+    
 }
 
     public function create()
@@ -92,4 +95,6 @@ class GastoController extends Controller
 
         return back()->with('error', 'No se pudo eliminar el gasto.');
     }
+
+    
 }

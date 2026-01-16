@@ -19,6 +19,9 @@
             <label>Descripción:</label>
             <input type="text" name="descripcion" value="{{ $ventas['descripcion'] ?? '' }}" required><br>
 
+             <label>Cantidad:</label>
+            <input type="text" name="Cantidad" value="{{ $ventas['Cantidad'] ?? '' }}" required><br>
+
             <label>Precio:</label>
             <input type="number" step="1000" name="precio" value="{{ $ventas['precio'] ?? '' }}" required><br>
 

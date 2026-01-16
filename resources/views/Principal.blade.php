@@ -9,6 +9,7 @@
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         /* Fondo con transición animada entre azul y rojo */
         body {
@@ -23,6 +24,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            
         }
 
         @keyframes gradientShift {
@@ -202,6 +204,55 @@
             font-size: 12px;
             margin-top: 5px;
         }
+        .whatsapp {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  z-index:100;
+}
+
+.whatsapp-icon {
+  margin-top:13px;
+}
+
+        .galeria {
+            max-width: 1200px;
+            margin: 70px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .galeria h2 {
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .grid-galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-galeria img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+            
+        }
+
+        .grid-galeria img:hover {
+            transform: scale(1.05);
+        }
 
 
         /* Responsive */
@@ -239,6 +290,16 @@
         <h1>Bienvenido a <span class="marca">Rallycars</span></h1>
         <p>Tu taller de confianza para diagnósticos, mantenimiento y reparaciones completas.</p>
     </div>
+    
+    <section class="galeria">
+        <h2>Nuestro Taller</h2>
+        <div class="grid-galeria">
+            <img src="{{ asset('imagenes/taller1.jpg') }}">
+            <img src="{{ asset('imagenes/taller2.jpg') }}">
+            <img src="{{ asset('imagenes/taller3.jpg') }}">
+            <img src="{{ asset('imagenes/taller4.jpg') }}">
+        </div>
+    </section>
 
     <section class="servicios">
         <h2>Nuestros Servicios</h2>
@@ -268,6 +329,8 @@
             </div>
         </div>
     </section>
+    <a href="https://wa.me/5211234567890?text=Me%20gustaría%20saber%20el%20precio%20del%20coche" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
+
 
     <footer class="footer">
         <p>&copy; {{ date('Y') }} Rally Cards. Todos los derechos reservados.</p>
