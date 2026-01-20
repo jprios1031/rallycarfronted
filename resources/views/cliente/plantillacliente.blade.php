@@ -1,313 +1,161 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('titulo') | RallyCar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@yield('titulo','Dashboard') | RallyCars</title>
 
-    <style>
-        body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F9FAFB;
-            color: #111827;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            text-align: center;
-        }
+  <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
 
-        header {
-            background-color: #1E3A8A;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-            color: white;
-            position: relative;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-        }
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .gear {
-            width: 70px;
-            animation: spin 4s linear infinite;
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
+  <style>
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+    }
 
-            to {
-                transform: rotate(360deg);
-            }
-        }
+    /* =========================
+       FORMULARIOS
+    ========================= */
+    .formulario {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
 
-        .marca {
-            color: #ff1e1e;
-            font-weight: bold;
-        }
+    .formulario label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
 
-        main {
-            padding: 100px;
-            background-color: #f9fafb;
-            flex: 1;
-        }
+    .formulario input,
+    .formulario select,
+    .formulario textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      margin-bottom: 18px;
+    }
 
-        footer {
-            background-color: #1E3A8A;
-            color: white;
-            text-align: center;
-            padding: 15px 10px;
-            font-size: 14px;
-        }
+    .formulario input:focus,
+    .formulario select:focus,
+    .formulario textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37,99,235,.2);
+    }
 
-        .redes-sociales a {
-            display: inline-block;
-            color: white;
-            margin: 0 5px;
-            font-size: 28px;
-            transition: color 0.3s;
-            text-decoration: dotted;
-        }
+    /* =========================
+       BOTONES
+    ========================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: all .25s ease;
+      cursor: pointer;
+    }
 
-        .redes-sociales a:hover {
-            color: #FFB800;
-        }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+    }
 
-        form {
-            background-color: white;
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37,99,235,.35);
+    }
 
-        form h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    .btn-danger {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+    }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="number"],
-        input[type="name"],
-        input[type="placa"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-            margin-bottom: 18px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background-color: #fdfdfd;
-        }
+    .btn-secondary {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+      color: white;
+    }
 
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #4b55e0;
-            box-shadow: 0 0 5px rgba(75, 85, 224, 0.3);
-        }
+    /* =========================
+       TABLAS
+    ========================= */
+    table {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
 
-        .logout-btn {
-            background-color: #EF4444;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 20px;
-            transition: all 0.3s ease;
-        }
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
 
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        .btn_eliminar {
-            background-color: #ED852F;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn_editar {
-            background-color: #3B82F6;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .formulario {
-            max-width: 420px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #FFFFFF;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .contenedor-tarjetas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .tarjeta {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: .2s;
-        }
-
-        .tarjeta-info h1 {
-            font-size: 32px;
-        }
-
-        .novedades-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .img-wrapper img {
-            width: 100%;
-            max-width: 320px;
-            border-radius: 10px;
-        }
-
-
-        /* Hasta 768px */
-        @media (max-width: 768px) {
-            main {
-                padding: 20px !important;
-            }
-
-            form {
-                width: 90% !important;
-                padding: 20px !important;
-            }
-
-            .user-card {
-                width: 100%;
-            }
-
-            .tarjeta-info h1 {
-                font-size: 26px;
-            }
-
-            .novedad-content h3 {
-                font-size: 1rem;
-            }
-        }
-
-        /* Hasta 600px (móvil) */
-        @media (max-width: 600px) {
-
-            header {
-                flex-direction: column !important;
-                text-align: center;
-                gap: 10px;
-                padding: 15px 10px !important;
-            }
-
-            header .gear {
-                width: 55px;
-            }
-
-            header h1 {
-                font-size: 1.4rem;
-            }
-
-            header form button {
-                width: 100%;
-                padding: 12px;
-                font-size: 15px;
-            }
-
-            main {
-                padding: 20px !important;
-            }
-
-            .contenedor-tarjetas {
-                grid-template-columns: 1fr !important;
-                gap: 15px;
-            }
-
-            .novedades-grid {
-                grid-template-columns: 1fr !important;
-            }
-
-            .img-wrapper img {
-                width: 100% !important;
-                height: auto !important;
-                max-width: 100% !important;
-            }
-
-            footer {
-                font-size: 12px;
-                padding: 12px;
-            }
-
-            .redes-sociales a {
-                font-size: 22px;
-            }
-        }
-    </style>
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-slate-100 text-gray-800 min-h-screen flex flex-col">
 
-    <header style="display:flex; justify-content:space-between; align-items:center; padding:20px 30px;">
-        <div style="text-align:center; flex:1;">
-            <img src="{{ asset('imagenes/engranajes.png') }}" class="gear">
-            <h1>Bienvenido a <span class="marca">RallyCar</span></h1>
-        </div>
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-blue-900 to-blue-800 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <img src="{{ asset('imagenes/logo1.png') }}" class="w-14">
+        <h1 class="text-xl font-semibold">
+          Rally<span class="text-red-400">Cars</span>
+        </h1>
+      </div>
 
-        <form method="POST" action="{{ route('logoutcliente') }}" style="margin:0; padding:0;">
-            @csrf
-            <button type="submit" style="background:#e84444; color:#fff; padding:10px 15px; border:none; border-radius:6px;">
-                Cerrar sesión
-            </button>
-        </form>
-    </header>
+      <form method="POST" action="{{ route('logoutcliente') }}">
+        @csrf
+        <button class="btn btn-danger">
+          <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+      </form>
 
-    <main>
-        @yield('contenido')
-    </main>
+    </div>
+  </header>
 
-    <footer>
-        <p>&copy; {{ date('Y') }} RallyCar. Todos los derechos reservados.</p>
-        <p>Creado por <strong>Juan Pablo Ríos Ríos</strong></p>
+  <!-- CONTENIDO -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-8">
+    @yield('contenido')
+  </main>
 
-        <div class="redes-sociales">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/573002001000" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
+  <!-- FOOTER -->
+  <footer class="bg-white border-t text-center text-sm text-gray-500 py-5">
+    <p>&copy; {{ date('Y') }} RallyCars · Pereira, Risaralda</p>
+    <p class="mt-1">Creado por <strong>Juan Pablo Ríos Ríos</strong></p>
 
-        <p>Pereira, Risaralda - Colombia</p>
-    </footer>
+    <div class="flex justify-center gap-4 mt-3 text-xl">
+      <a href="https://facebook.com" target="_blank" class="hover:text-blue-600">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="hover:text-pink-500">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/573002001000" target="_blank" class="hover:text-green-500">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </footer>
 
 </body>
-
 </html>

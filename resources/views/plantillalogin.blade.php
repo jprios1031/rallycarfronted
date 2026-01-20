@@ -1,236 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('titulo') | RallyCar</title>
-            <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@yield('titulo') | RallyCars</title>
+  <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        /* === ESTILOS GENERALES === */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f4f6;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        h1,
-        h2,
-        h3 {
-            margin: 0;
-        }
-
-        /* === HEADER === */
-        header {
-            background-color: #1E40AF;            text-align: center;
-            padding: 20px 0;
-            color: white;
-            position: relative;
-        }
-
-        .gear {
-            width: 90px;
-            animation: spin 4s linear infinite;
-            display: block;
-            margin: 0 auto 10px;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .marca {
-            color: #ff1e1e;
-            font-weight: bold;
-        }
-
-       
-
-        /* === MAIN === */
-        main {
-            margin-left: 20px;
-            padding: 10px;
-            flex: 1;
-            min-height: 8vh;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background-color: #1E3A8A;
-            color: #fff;
-            text-align: center;
-            padding: 15px 10px;
-            margin-top: auto;
-            font-size: 14px;
-        }
-
-        .footer .redes-sociales {
-            margin: 8px 0;
-        }
-
-        .footer .redes-sociales a {
-            color: white;
-            margin: 0 8px;
-            font-size: 18px;
-            text-decoration: none;
-            transition: transform 0.2s, color 0.2s;
-        }
-
-        .footer .redes-sociales a:hover {
-            color: #1e3a8a;
-            transform: scale(1.2);
-        }
-
-        .ubicacion {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        /* === FORMULARIOS === */
-        form {
-            background-color: white;
-            max-width: 700px;
-            margin: 20px auto;
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="number"],
-        input[type="name"],
-        input[type="placa"],
-
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-            margin-bottom: 18px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background-color: #fdfdfd;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #4b55e0;
-            box-shadow: 0 0 5px rgba(75, 85, 224, 0.3);
-        }
-
-       .logout-btn {
-            background-color: #EF4444;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-             .btn_eliminar {
-            background-color: #ED852F;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-         .btn_editar {
-            background-color: #4C2FED;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background-color: #DC2626;
-        }
-
-        
-         .btn_eliminar:hover {
-            background-color: #D97706;
-        }
-         .btn_editar:hover {
-            background-color: #4338CA;
-        }
-
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-
-            main {
-                margin-left: 0;
-                padding: 20px;
-            }
-
-            form {
-                width: 90%;
-            }
-        }
-    </style>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
-<body>
-    <header>
-        <img src="{{ asset('imagenes/engranajes.png') }}" alt="Engranaje" class="gear">
-        <h1>Bienvenido a <span class="marca">RallyCar</span></h1>
-    </header>
+<body class="min-h-screen flex flex-col bg-gradient-to-br from-blue-900 via-blue-800 to-red-700 text-white">
 
+  <!-- Header -->
+  <header class="bg-black/40 backdrop-blur-md shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+      <img src="{{ asset('imagenes/logo1.png') }}" alt="RallyCars" class="w-20 mx-auto mb-3" />
+      <h1 class="text-2xl font-semibold tracking-wide">Bienvenido a <span class="text-yellow-400">RallyCars</span></h1>
+    </div>
+  </header>
 
-    <main>
+  <!-- Main -->
+  <main class="flex-1 flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md bg-white text-gray-800 rounded-2xl shadow-2xl p-8 relative">
+
+      <!-- Título del formulario -->
+      <div class="text-center mb-6">
+        <h2 class="text-xl font-bold text-blue-900">@yield('titulo')</h2>
+        <div class="mt-3 h-1 w-20 bg-gradient-to-r from-blue-700 to-red-600 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="space-y-6">
         @yield('contenido')
-    </main>
+      </div>
 
-    <footer class="footer">
-        <p>&copy; {{ date('Y') }} RallyCar. Todos los derechos reservados.</p>
-        <p>Creado por <strong>Juan Pablo Ríos Ríos</strong></p>
+      <!-- Separador inferior -->
+      <div class="mt-8 border-t pt-4 text-center text-sm text-gray-500">
+        Sistema de gestión RallyCars
+      </div>
+    </div>
+  </main>
 
-        <div class="redes-sociales">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/573002001000" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
+  <!-- Footer -->
+  <footer class="bg-black/60 text-gray-300 text-center py-6 text-sm">
+    <img src="{{ asset('imagenes/logo1.png') }}" class="w-14 mx-auto mb-3" />
+    <p>&copy; {{ date('Y') }} RallyCars. Todos los derechos reservados.</p>
+    <p class="mb-3">Desarrollado por <strong class="text-white">Juan Pablo Ríos Ríos</strong></p>
 
-        <p class="ubicacion">Pereira, Risaralda - Colombia</p>
-    </footer>
+    <div class="flex justify-center gap-6 text-xl">
+      <a href="https://facebook.com" target="_blank" class="hover:text-blue-500 transition"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" class="hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/573002001000" target="_blank" class="hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <p class="text-xs mt-3">Pereira, Risaralda · Colombia</p>
+  </footer>
+
 </body>
-
 </html>

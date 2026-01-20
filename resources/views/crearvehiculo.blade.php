@@ -4,43 +4,126 @@
 
 @section('contenido')
 
+<style>
+    .contenedor-vehiculo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-top:40px;
+    }
 
-<main>
-    <div class="login-box">
-        <h2>Crear vehiculo</h2>
+    .vehiculo-box{
+        width:100%;
+        max-width:460px;
+        background:#ffffff;
+        padding:30px;
+        border-radius:14px;
+        box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
 
-       <form action="{{ route('vehiculo.store') }}" method="POST" class="formulario">
-    @csrf
+    .vehiculo-box h2{
+        text-align:center;
+        margin-bottom:22px;
+        color:#333;
+    }
 
-    <label>Marca:</label>
-    <input type="text" name="marca" required>
+    .vehiculo-box label{
+        display:block;
+        font-weight:600;
+        margin-top:14px;
+        margin-bottom:6px;
+        color:#444;
+    }
 
-    <label>Modelo:</label>
-    <input type="text" name="modelo" required>
+    .vehiculo-box input,
+    .vehiculo-box select{
+        width:100%;
+        padding:10px 12px;
+        border-radius:8px;
+        border:1px solid #ccc;
+        font-size:14px;
+        transition:border 0.3s;
+    }
 
-    <label>Placa:</label>
-    <input type="text" name="placa" required>
+    .vehiculo-box input:focus,
+    .vehiculo-box select:focus{
+        outline:none;
+        border-color:#3B82F6;
+    }
 
-    <label>Usuario:</label>
-    <select name="user_id" required>
-        <option value="">Seleccione un usuario</option>
-        <br>
-        @foreach($usuarios as $usuario)
-            <option value="{{ $usuario['id'] }}">{{ $usuario['name'] }}</option>
-        @endforeach
-    </select>
-    <br>
-    <br>
-<button type="submit" class="btn_editar">Registrar Vehículo</button>
-</form>
+    .acciones{
+        display:flex;
+        gap:12px;
+        margin-top:25px;
+    }
 
-        <br>
-        <a href="{{ route('vehiculo.index') }}">
-            <button class="btn_eliminar">Volver</button>
-        </a>
+    .acciones button,
+    .acciones a{
+        flex:1;
+        text-align:center;
+        padding:10px;
+        border-radius:10px;
+        font-weight:600;
+        cursor:pointer;
+        text-decoration:none;
+        transition:transform 0.2s, background 0.3s;
+    }
+
+    .btn_guardar{
+        background:#3B82F6;
+        color:white;
+        border:none;
+    }
+
+    .btn_guardar:hover{
+        background:#2563EB;
+        transform:scale(1.05);
+    }
+
+    .btn_volver{
+        background:#e84444;
+        color:white;
+    }
+
+    .btn_volver:hover{
+        background:#c53030;
+        transform:scale(1.05);
+    }
+</style>
+
+<div class="contenedor-vehiculo">
+    <div class="vehiculo-box">
+
+        <h2>Crear Vehículo</h2>
+
+        <form action="{{ route('vehiculo.store') }}" method="POST">
+            @csrf
+
+            <label>Marca</label>
+            <input type="text" name="marca" required>
+
+            <label>Modelo</label>
+            <input type="text" name="modelo" required>
+
+            <label>Placa</label>
+            <input type="text" name="placa" required>
+
+            <label>Usuario</label>
+            <select name="user_id" required>
+                <option value="">Seleccione un usuario</option>
+                @foreach($usuarios as $usuario)
+                    <option value="{{ $usuario['id'] }}">{{ $usuario['name'] }}</option>
+                @endforeach
+            </select>
+
+            <div class="acciones">
+                <button type="submit" class="btn_guardar">Registrar Vehículo</button>
+                <a href="{{ route('vehiculo.index') }}" class="btn_volver">Volver</a>
+            </div>
+
+        </form>
 
     </div>
-</main>
-
+</div>
 
 @endsection

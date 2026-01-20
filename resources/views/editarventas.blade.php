@@ -3,35 +3,122 @@
 @section('titulo', 'Editar Venta')
 
 @section('contenido')
-<main>
-    <div class="login-box">
+
+<style>
+    .contenedor-venta{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-top:40px;
+    }
+
+    .venta-box{
+        width:100%;
+        max-width:520px;
+        background:#ffffff;
+        padding:30px;
+        border-radius:14px;
+        box-shadow:0 6px 16px rgba(0,0,0,.15);
+    }
+
+    .venta-box h2{
+        text-align:center;
+        margin-bottom:22px;
+        color:#333;
+    }
+
+    .venta-box label{
+        display:block;
+        font-weight:600;
+        margin-top:14px;
+        margin-bottom:6px;
+        color:#444;
+    }
+
+    .venta-box input{
+        width:100%;
+        padding:10px 12px;
+        border-radius:8px;
+        border:1px solid #ccc;
+        font-size:14px;
+        transition:border 0.3s;
+    }
+
+    .venta-box input:focus{
+        outline:none;
+        border-color:#3B82F6;
+    }
+
+    .acciones{
+        display:flex;
+        gap:12px;
+        margin-top:25px;
+    }
+
+    .btn_actualizar{
+        flex:1;
+        background:#3B82F6;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-weight:600;
+        padding:10px;
+        cursor:pointer;
+        transition:transform 0.2s, background 0.3s;
+    }
+
+    .btn_actualizar:hover{
+        background:#2563EB;
+        transform:scale(1.05);
+    }
+
+    .btn_volver{
+        flex:1;
+        background:#e84444;
+        color:white;
+        border:none;
+        border-radius:10px;
+        text-align:center;
+        padding:10px;
+        font-weight:600;
+        text-decoration:none;
+        transition:transform 0.2s, background 0.3s;
+    }
+
+    .btn_volver:hover{
+        background:#c53030;
+        transform:scale(1.05);
+    }
+</style>
+
+<div class="contenedor-venta">
+    <div class="venta-box">
+
         <h2>Editar Venta</h2>
 
-        <form action="{{ route('ventas.update', $ventas['id']) }}" method="POST" class="formulario">
+        <form action="{{ route('ventas.update', $ventas['id']) }}" method="POST">
             @csrf
             @method('PUT')
-           
-            <br><br>
 
-            <label>Tipo:</label>
-            <input type="text" name="tipo" value="{{ $ventas['tipo'] ?? '' }}" required><br>
+            <label>Tipo</label>
+            <input type="text" name="tipo" value="{{ $ventas['tipo'] ?? '' }}" required>
 
-            <label>Descripción:</label>
-            <input type="text" name="descripcion" value="{{ $ventas['descripcion'] ?? '' }}" required><br>
+            <label>Descripción</label>
+            <input type="text" name="descripcion" value="{{ $ventas['descripcion'] ?? '' }}" required>
 
-             <label>Cantidad:</label>
-            <input type="text" name="Cantidad" value="{{ $ventas['Cantidad'] ?? '' }}" required><br>
+            <label>Cantidad</label>
+            <input type="number" name="cantidad" value="{{ $ventas['cantidad'] ?? '' }}" min="1" required>
 
-            <label>Precio:</label>
-            <input type="number" step="1000" name="precio" value="{{ $ventas['precio'] ?? '' }}" required><br>
+            <label>Precio</label>
+            <input type="number" step="1000" name="precio" value="{{ $ventas['precio'] ?? '' }}" required>
 
-            <button type="submit" class="btn_editar">Actualizar Venta</button>
+            <div class="acciones">
+                <button type="submit" class="btn_actualizar">Actualizar Venta</button>
+                <a href="{{ route('ventas.index') }}" class="btn_volver">Volver</a>
+            </div>
         </form>
 
-        <a href="{{ route('ventas.index') }}">
-            <button class="btn_eliminar">Volver</button>
-        </a>
     </div>
-</main>
+</div>
 
 @endsection

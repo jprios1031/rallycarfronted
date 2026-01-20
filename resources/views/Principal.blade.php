@@ -1,350 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-            <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@yield('titulo','Inicio') | RallyCars</title>
+  <link rel="icon" href="{{ asset('imagenes/logo1.png') }}" type="image/png">
 
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        /* Fondo con transición animada entre azul y rojo */
-        body {
-            background: linear-gradient(-45deg, #4A75F0, #E36464, #4570DE, #E86868);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Header con botones arriba a la derecha */
-  .header {
-    position: relative;
-    padding: 20px 50px; /* ajusta según prefieras */
-    /* elimina justify-content: center para no centrar el contenido */
-    /* si quieres, agrega height para que el header tenga altura fija */
-    height: 80px; 
-}
-
-.botones {
-    position: absolute;
-    top: 20px;   /* igual al padding superior del header */
-    right: 50px; /* igual al padding derecho del header */
-    display: flex;
-    gap: 30px;
-    justify-content: flex-end;
-    align-items: center; /* para centrar verticalmente los botones */
-}
-
-.btn {
-    background-color: #174dd7;
-    color: white;
-    padding: 15px 50px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    /* elimina align-items de aquí */
-}
-
-        .btn:hover {
-            background-color: #0b3ecf;
-            transform: scale(1.05);
-        }
-
-        .btn-secundario {
-            background-color: #ff1e1e;
-        }
-
-        .btn-secundario:hover {
-            background-color: #d81414;
-            transform: scale(1.05);
-        }
-
-        /* Contenido principal */
-        .inicio-container {
-            text-align: center;
-            margin-top: 70px;
-        }
-
-        .marca {
-            color: #ff1e1e;
-        }
-
-        .logo {
-            width: 250px;
-            /* antes 100px */
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .gear {
-            width: 120px;
-            animation: spin 4s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Sección de servicios */
-        .servicios {
-            text-align: center;
-            margin: 80px auto;
-            max-width: 1100px;
-        }
-
-        .servicios h2 {
-            font-size: 1.9em;
-            margin-bottom: 30px;
-            color: #fff;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .tarjetas-servicios {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            padding: 0 20px;
-        }
-
-        .tarjeta {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .tarjeta:hover {
-            transform: translateY(-6px);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .icono-servicio {
-            font-size: 2.5em;
-            color: #174dd7;
-            margin-bottom: 10px;
-        }
-
-        .tarjeta h3 {
-            color: #fff;
-            margin-bottom: 8px;
-            font-size: 1.2em;
-        }
-
-        .tarjeta p {
-            color: #e0e0e0;
-            font-size: 0.95em;
-        }
-
-        .footer {
-            /* background-color: #ff1e1eff; */
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 13px;
-        }
-
-        .footer p {
-            margin: 5px 0;
-        }
-
-        .footer .redes-sociales {
-            margin: 8px 0;
-        }
-
-        .footer .redes-sociales a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 18px;
-            transition: transform 0.2s, color 0.2s;
-        }
-
-        .footer .redes-sociales a:hover {
-            color: #2500f4ff;
-            transform: scale(1.2);
-        }
-
-        .footer .ubicacion {
-            font-size: 12px;
-            margin-top: 5px;
-        }
-        .whatsapp {
-  position:fixed;
-  width:60px;
-  height:60px;
-  bottom:40px;
-  right:40px;
-  background-color:#25d366;
-  color:#FFF;
-  border-radius:50px;
-  text-align:center;
-  font-size:30px;
-  z-index:100;
-}
-
-.whatsapp-icon {
-  margin-top:13px;
-}
-
-        .galeria {
-            max-width: 1200px;
-            margin: 70px auto;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .galeria h2 {
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-
-        .grid-galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .grid-galeria img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-            
-        }
-
-        .grid-galeria img:hover {
-            transform: scale(1.05);
-        }
-
-
-        /* Responsive */
-        @media (max-width: 700px) {
-            .header {
-                justify-content: center;
-                padding: 15px;
-            }
-
-            .gear {
-                width: 80px;
-            }
-
-            h1 {
-                font-size: 1.6em;
-            }
-        }
-    </style>
+  <style>
+    body { font-family: 'Poppins', system-ui, sans-serif; }
+  </style>
 </head>
 
-<body>
+<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-red-700 text-white min-h-screen flex flex-col">
 
-    
+  <!-- Header -->
+  <header class="w-full bg-black/40 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="flex items-center gap-3">
+        <img src="{{ asset('imagenes/logo1.png') }}" alt="RallyCars" class="w-12 h-auto" />
+        <span class="text-lg font-semibold tracking-wide">RallyCars</span>
+      </div>
+
+      <nav class="flex gap-3">
+        <a href="{{ route('iniciocliente.index') }}" class="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition font-semibold">Cliente</a>
+        <a href="{{ route('inicio.index') }}" class="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 transition font-semibold">Admin</a>
+      </nav>
     </div>
+  </header>
 
-     <div class="header">
-        <div class="botones">
-                        <a href="{{ route('iniciocliente.index') }}" class="btn btn-primario">Cliente</a>
-
-            <a href="{{ route('inicio.index') }}" class="btn btn-secundario">Admin</a>
+  <!-- Hero / Content -->
+  <main class="flex-1">
+    @hasSection('hero')
+      @yield('hero')
+    @else
+      <section class="flex items-center justify-center text-center px-6 py-24">
+        <div class="max-w-3xl">
+          <img src="{{ asset('imagenes/logo1.png') }}" class="mx-auto w-40 mb-6" alt="Logo RallyCars" />
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Bienvenido a <span class="text-red-500">RallyCars</span></h1>
+          <p class="text-lg text-gray-200 mb-8">Taller automotriz profesional especializado en diagnóstico, mantenimiento y reparación integral.</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#servicios" class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-700 transition font-semibold">Nuestros Servicios</a>
+            <a href="https://wa.me/573002001000" target="_blank" class="px-8 py-3 rounded-full bg-green-600 hover:bg-green-700 transition font-semibold">
+              <i class="fa-brands fa-whatsapp mr-2"></i> Contáctanos
+            </a>
+          </div>
         </div>
-    </div>
-    <div class="inicio-container">
-        <img src="{{ asset('imagenes/logo1.png') }}" alt="Logo RallyCar" class="logo">
-        <h1>Bienvenido a <span class="marca">Rallycars</span></h1>
-        <p>Tu taller de confianza para diagnósticos, mantenimiento y reparaciones completas.</p>
-    </div>
-    
-    <section class="galeria">
-        <h2>Nuestro Taller</h2>
-        <div class="grid-galeria">
-            <img src="{{ asset('imagenes/taller1.jpg') }}">
-            <img src="{{ asset('imagenes/taller2.jpg') }}">
-            <img src="{{ asset('imagenes/taller3.jpg') }}">
-            <img src="{{ asset('imagenes/taller4.jpg') }}">
+      </section>
+    @endif
+
+    @yield('contenido')
+
+    <!-- Servicios -->
+    <section id="servicios" class="bg-white text-gray-800 py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-gray-50 rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+            <i class="fa-solid fa-magnifying-glass-chart text-4xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Diagnóstico Avanzado</h3>
+            <p class="text-sm text-gray-600">Escáner profesional para detección precisa de fallas electrónicas.</p>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+            <i class="fa-solid fa-oil-can text-4xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Mantenimiento Preventivo</h3>
+            <p class="text-sm text-gray-600">Cambios de aceite, filtros y revisión general especializada.</p>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+            <i class="fa-solid fa-car-side text-4xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Alineación y Balanceo</h3>
+            <p class="text-sm text-gray-600">Conducción estable y segura con equipos modernos.</p>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+            <i class="fa-solid fa-bolt text-4xl text-blue-600 mb-4"></i>
+            <h3 class="font-semibold text-lg mb-2">Servicio Mecánico</h3>
+            <p class="text-sm text-gray-600">Reparación eléctrica, frenos, suspensión y motor.</p>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <section class="servicios">
-        <h2>Nuestros Servicios</h2>
-        <div class="tarjetas-servicios">
-            <div class="tarjeta">
-                <i class="fa-solid fa-magnifying-glass-chart icono-servicio"></i>
-                <h3>Diagnóstico con Escáner</h3>
-                <p>Detectamos fallas electrónicas con tecnología avanzada para un mantenimiento más preciso.</p>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-black text-gray-300">
+    <div class="max-w-7xl mx-auto px-6 py-10 text-center">
+      <img src="{{ asset('imagenes/logo1.png') }}" class="mx-auto w-16 mb-4" />
+      <p class="text-sm">&copy; {{ date('Y') }} RallyCars. Todos los derechos reservados.</p>
+      <p class="text-sm mb-4">Desarrollado por <strong class="text-white">Juan Pablo Ríos Ríos</strong></p>
 
-            <div class="tarjeta">
-                <i class="fa-solid fa-oil-can icono-servicio"></i>
-                <h3>Mantenimiento Preventivo</h3>
-                <p>Cuidamos tu vehículo con cambios de aceite, filtros y revisión general profesional.</p>
-            </div>
+      <div class="flex justify-center gap-6 text-xl">
+        <a href="https://www.facebook.com" target="_blank" class="hover:text-blue-500"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/573002001000" target="_blank" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
+      </div>
 
-            <div class="tarjeta">
-                <i class="fa-solid fa-car-side icono-servicio"></i>
-                <h3>Alineación y Balanceo</h3>
-                <p>Garantizamos una conducción estable y segura con herramientas modernas.</p>
-            </div>
-
-            <div class="tarjeta">
-                <i class="fa-solid fa-bolt icono-servicio"></i>
-                <h3>Servicio Eléctrico y Mecánico</h3>
-                <p>Reparamos sistemas eléctricos, frenos, suspensión y más con personal capacitado.</p>
-            </div>
-        </div>
-    </section>
-    <a href="https://wa.me/5211234567890?text=Me%20gustaría%20saber%20el%20precio%20del%20coche" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a>
-
-
-    <footer class="footer">
-        <p>&copy; {{ date('Y') }} Rally Cards. Todos los derechos reservados.</p>
-        <p>Creado por <strong>Juan Pablo Ríos Ríos</strong></p>
-
-        <div class="redes-sociales">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/573002001000" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-
-        <p class="ubicacion"> Pereira, Risaralda - Colombia</p>
-    </footer>
+      <p class="text-xs mt-4">Pereira, Risaralda · Colombia</p>
+    </div>
+  </footer>
 
 </body>
-
 </html>
