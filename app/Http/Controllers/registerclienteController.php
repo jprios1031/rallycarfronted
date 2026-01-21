@@ -9,7 +9,7 @@ class RegisterclienteController extends Controller
 {
     public function showForm()
     {
-        return view('cliente.registercliente');
+        return view('registercliente');
     }
 
     public function store(Request $request)
