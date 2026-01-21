@@ -5,7 +5,7 @@ use App\Http\Controllers\{
     VentaController, InicioController, InicioclienteController,
     DashboardController, DashboardClienteController, UsuarioController,
     VehiculoController, NovedadController, NovedadclienteController,
-    PrincipalController, RegisterController, RegisterclienteController,GastoController
+    PrincipalController, RegisterController, RegisterClienteController,GastoController
 };
 use App\Http\Middleware\{AdminMiddleware, ClienteMiddleware};
 
@@ -24,12 +24,12 @@ Route::middleware(['web'])->group(function () {
     // LOGIN CLIENTE
     Route::get('iniciocliente', [InicioclienteController::class, 'index'])->name('iniciocliente.index');
     Route::post('iniciocliente', [InicioclienteController::class, 'login'])->name('iniciocliente.login');
-    Route::get('registercliente', [RegisterclienteController::class, 'showForm'])->name('registercliente.showForm');
-    Route::post('registercliente', [RegisterclienteController::class, 'store'])->name('registercliente.store');
-    Route::post('/logout-cliente', [InicioclienteController::class, 'logout'])->name('logoutcliente');
+    Route::get('registercliente', [RegisterClienteController::class, 'showForm'])->name('registercliente.showForm');
+    Route::post('registercliente', [RegisterClienteController::class, 'store'])->name('registercliente.store');
+    Route::post('/logout-cliente', [RegisterClienteController::class, 'logout'])->name('logoutcliente');
 
     // ADMIN
-Route::middleware([AdminMiddleware::class])->group(function () {
+        Route::middleware([AdminMiddleware::class])->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('gastos', GastoController::class)->except(['show']);
