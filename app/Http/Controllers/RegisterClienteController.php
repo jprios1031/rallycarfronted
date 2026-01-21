@@ -36,4 +36,14 @@ class RegisterClienteController  extends Controller
     }
 }
 
+
+        public function logout(Request $request)
+        {
+            // Eliminar los datos de sesión del usuario
+            $request->session()->flush();
+        
+            // Redirigir al login del admin
+            return redirect()->route('principal');
+        }
+
 }
