@@ -117,14 +117,14 @@
     /* =========================
        TABLAS
     ========================= */
-    table {
-      background: white;
-      border-radius: 12px;
-      overflow-x: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,.08);
-      width: 100%;
-      display: block;
-    }
+   table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  width: 100%;
+  border-collapse: collapse;
+}
+
 
     th {
       background: #f1f5f9;
