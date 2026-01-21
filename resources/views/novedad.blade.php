@@ -148,12 +148,13 @@
                                     @foreach($novedad['imagenes'] as $img)
                                         @if(!empty($img['ruta']))
                                             <img 
-                                                    src="{{ $img['ruta'] }}"
+                                                    src="{{ asset('storage/' . $img['ruta']) }}"
                                                     alt="Imagen de novedad"
                                                     width="180"
                                                     height="120"
                                                     style="object-fit:cover;"
                                                 >
+
                                         @endif
                                     @endforeach
                                 </div>
