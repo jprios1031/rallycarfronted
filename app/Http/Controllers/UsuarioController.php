@@ -59,7 +59,7 @@ public function create()
         'role_id' => 'nullable|integer',
     ]);
     // Enviar los datos al endpoint de la API
-    $response = Http::withToken($token)->post('https://rallycarbacken-production.up.railway.appapi/users', [
+    $response = Http::withToken($token)->post('https://rallycarbacken-production.up.railway.app/api/users', [
         'name' => $request->input('name'),
         'email' => $request->input('email'),
         'password' => $request->input('password'),
