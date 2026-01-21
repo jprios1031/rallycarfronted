@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
 
         //enviamos la peticion a la api para obtener las novedades
-        $responseNovedades = Http::withToken($token)->get('https://rallycarbacken-production.up.railwa.app/api/novedades');
+        $responseNovedades = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades');
         $novedades = $responseNovedades->successful() ? $responseNovedades->json() : [];
         //enviamos la peticion a la api para obtener los usuarios
         $responseusers = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/users');
