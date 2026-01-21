@@ -18,7 +18,8 @@ class GastoController extends Controller
         $queryParams['search'] = $search;
     }
 
-    $gastosResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/gastos', $queryParams);
+    $gastosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/gastos', $queryParams);
     $gastos = $gastosResponse->successful() ? $gastosResponse->json() : [];
 
     return view('gastos', compact('gastos', 'search'));
@@ -46,7 +47,8 @@ class GastoController extends Controller
     'descripcion' => $request->descripcion,
     'precio' => $request->precio,
       ];
-        $response = Http::withToken($token)->post('http://127.0.0.1:8000/api/gastos', $data);
+        $response = Http::withToken($token)->post('https://rallycarbacken-production.up.railway.app
+/api/gastos', $data);
 
         if ($response->successful()) {
             return redirect()->route('gastos.index')->with('success', 'gasto creado exitosamente.');
@@ -58,7 +60,8 @@ class GastoController extends Controller
     {
         $token = Session::get('token');
 
-        $response = Http::withToken($token)->get("http://127.0.0.1:8000/api/gastos/{$id}");
+        $response = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app
+/api/gastos/{$id}");
         
         if ($response->successful()) {
             $gastos = $response->json();
@@ -75,7 +78,8 @@ class GastoController extends Controller
 
         $data = $request->only(['tipo', 'descripcion', 'precio']);
 
-        $response = Http::withToken($token)->put("http://127.0.0.1:8000/api/gastos/{$id}", $data);
+        $response = Http::withToken($token)->put("https://rallycarbacken-production.up.railway.app
+/api/gastos/{$id}", $data);
 
         if ($response->successful()) {
             return redirect()->route('gastos.index')->with('success', 'gasto actualizado correctamente');
@@ -87,7 +91,8 @@ class GastoController extends Controller
     {
         $token = Session::get('token');
 
-        $response =Http::withToken($token)->delete("http://127.0.0.1:8000/api/gastos/{$id}");
+        $response =Http::withToken($token)->delete("https://rallycarbacken-production.up.railway.app
+/api/gastos/{$id}");
 
         if ($response->successful()) {
             return redirect()->route('gastos.index')->with('success', 'gasto eliminado correctamente');

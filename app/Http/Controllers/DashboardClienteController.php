@@ -17,7 +17,7 @@ public function index()
     }
 
     // Obtener novedades filtradas por vehículo
-    $response = \Http::withToken($token)->get('http://127.0.0.1:8000/api/novedades');
+    $response = \Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades');
     $novedades = $response->successful() ? $response->json() : [];
 
     $vehiculoId = $user['vehiculo']['id'] ?? null;

@@ -17,10 +17,12 @@ class VehiculoController extends Controller
         $queryParams = ['search' => $search];
     }
     
-    $vehiculosResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/vehiculos', $queryParams);
+    $vehiculosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/vehiculos', $queryParams);
     $vehiculos = $vehiculosResponse->successful() ? $vehiculosResponse->json() : [];
 
-    $usuariosResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/users');
+    $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/users');
     $usuarios = $usuariosResponse->successful() ? $usuariosResponse->json() : [];
 
     return view('vehiculo', compact('vehiculos', 'usuarios'));
@@ -31,7 +33,8 @@ class VehiculoController extends Controller
     {
         
         $token = Session::get('token');
-        $usuariosResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/users');
+        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/users');
         $usuarios = $usuariosResponse->successful() ? $usuariosResponse->json() : [];
 
         return view('crearvehiculo', compact('usuarios'));
@@ -54,7 +57,8 @@ class VehiculoController extends Controller
     'user_id' => $request->user_id, 
 ];
 
-        $response = Http::withToken($token)->post('http://127.0.0.1:8000/api/vehiculos', $data);
+        $response = Http::withToken($token)->post('https://rallycarbacken-production.up.railway.app
+/api/vehiculos', $data);
 
         if ($response->successful()) {
             return redirect()->route('vehiculo.index')->with('success', 'Vehículo creado exitosamente.');
@@ -71,8 +75,10 @@ class VehiculoController extends Controller
     public function edit($id)
     {
         $token = Session::get('token');
-        $Vehiculoresponse = Http::withToken($token)->get("http://127.0.0.1:8000/api/vehiculos/{$id}");
-        $usuariosResponse = Http::withToken($token)->get('http://127.0.0.1:8000/api/users');
+        $Vehiculoresponse = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app
+/api/vehiculos/{$id}");
+        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/users');
 
         if ($Vehiculoresponse->successful() && $usuariosResponse->successful() ) {
             $vehiculo = $Vehiculoresponse->json();
@@ -90,7 +96,8 @@ class VehiculoController extends Controller
         $token = Session::get('token');
         $data = $request->only(['placa', 'marca', 'modelo', 'user_id']);
 
-        $response = Http::withToken($token)->put("http://127.0.0.1:8000/api/vehiculos/{$id}", $data);
+        $response = Http::withToken($token)->put("https://rallycarbacken-production.up.railway.app
+/api/vehiculos/{$id}", $data);
 
         if ($response->successful()) {
             return redirect()->route('vehiculo.index')->with('success', 'Vehículo actualizado correctamente');
@@ -103,7 +110,8 @@ class VehiculoController extends Controller
     {
         
         $token = Session::get('token');
-        $response = Http::withToken($token)->delete("http://127.0.0.1:8000/api/vehiculos/{$id}");
+        $response = Http::withToken($token)->delete("https://rallycarbacken-production.up.railway.app
+/api/vehiculos/{$id}");
 
         if ($response->successful()) {
             return redirect()->route('vehiculo.index')->with('success', 'Vehículo eliminado correctamente');

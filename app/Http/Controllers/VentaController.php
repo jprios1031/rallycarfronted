@@ -19,7 +19,8 @@ class VentaController extends Controller
         }
 
         $response = Http::withToken($token)
-            ->get('http://127.0.0.1:8000/api/ventas', $queryParams);
+            ->get('https://rallycarbacken-production.up.railway.app
+/api/ventas', $queryParams);
 
         $ventas = $response->successful() ? $response->json() : [];
 
@@ -50,7 +51,8 @@ class VentaController extends Controller
         ]);
 
         $response = Http::withToken($token)
-        ->post('http://127.0.0.1:8000/api/ventas', $data);
+        ->post('https://rallycarbacken-production.up.railway.app
+/api/ventas', $data);
         // dd($response->json());
 
          
@@ -69,7 +71,8 @@ class VentaController extends Controller
         $token = Session::get('token');
 
         $response = Http::withToken($token)
-            ->get("http://127.0.0.1:8000/api/ventas/{$id}");
+            ->get("hhttps://rallycarbacken-production.up.railway.app
+/api/ventas/{$id}");
 
         if ($response->successful()) {
             $ventas = $response->json();
@@ -93,7 +96,8 @@ class VentaController extends Controller
         ]);
 
         $response = Http::withToken($token)
-            ->put("http://127.0.0.1:8000/api/ventas/{$id}", $data);
+            ->put("https://rallycarbacken-production.up.railway.app
+/api/ventas/{$id}", $data);
 
         if ($response->successful()) {
             return redirect()
@@ -109,7 +113,8 @@ class VentaController extends Controller
         $token = Session::get('token');
 
         $response = Http::withToken($token)
-            ->delete("http://127.0.0.1:8000/api/ventas/{$id}");
+            ->delete("https://rallycarbacken-production.up.railway.app
+/api/ventas/{$id}");
 
         if ($response->successful()) {
             return redirect()
@@ -125,7 +130,8 @@ class VentaController extends Controller
         $token = Session::get('token');
 
         $response = Http::withToken($token)
-            ->post("http://127.0.0.1:8000/api/generar-pdf/{$id}");
+            ->post("https://rallycarbacken-production.up.railway.app
+/api/generar-pdf/{$id}");
 
         if (!$response->successful()) {
             return back()->with('error', 'No se pudo generar el PDF');

@@ -17,8 +17,10 @@ class UsuarioController extends Controller
         $queryParams = ['search' => $search];
     }
 
-    $responseUsuarios = Http::withToken($token)->get('http://127.0.0.1:8000/api/users' , $queryParams );
-    $responseVehiculos = Http::withToken($token)->get('http://127.0.0.1:8000/api/vehiculos');
+    $responseUsuarios = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/users' , $queryParams );
+    $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/vehiculos');
 
     $usuarios = $responseUsuarios->successful() ? $responseUsuarios->json() : [];
     $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
@@ -34,10 +36,12 @@ public function create()
     try {
     
      $token = Session::get('token');
-    $responseVehiculos = Http::withToken($token)->get('http://127.0.0.1:8000/api/vehiculos');
+    $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/vehiculos');
     $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
 
-    $responseRoles = Http::withToken($token)->get('http://127.0.0.1:8000/api/roles');
+    $responseRoles = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/roles');
     $roles = $responseRoles->successful() ? $responseRoles->json() : [];
       
     return view('crearusuario', compact('vehiculos', 'roles'));
@@ -59,7 +63,8 @@ public function create()
         'role_id' => 'nullable|integer',
     ]);
     // Enviar los datos al endpoint de la API
-    $response = Http::withToken($token)->post('http://127.0.0.1:8000/api/users', [
+    $response = Http::withToken($token)->post('https://rallycarbacken-production.up.railway.app
+api/users', [
         'name' => $request->input('name'),
         'email' => $request->input('email'),
         'password' => $request->input('password'),
@@ -87,13 +92,16 @@ public function create()
 {
      $token = Session::get('token');
     
-    $responseUsuario = Http::withToken($token)->get("http://127.0.0.1:8000/api/users/{$id}");
+    $responseUsuario = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app
+/api/users/{$id}");
     $usuario = $responseUsuario->successful() ? $responseUsuario->json() : null;
 
-    $responseVehiculos = Http::withToken($token)->get('http://127.0.0.1:8000/api/vehiculos');
+    $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/vehiculos');
     $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
 
-    $responseroles = Http::withToken($token)->get('http://127.0.0.1:8000/api/roles');
+    $responseroles = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
+/api/roles');
         $roles = $responseroles->successful() ? $responseroles->json() : [];
 
     return view('editarusuario', compact('usuario', 'vehiculos', 'roles'));
@@ -115,7 +123,8 @@ public function create()
         'role_id' => $request->role_id, 
     ];
  $token = Session::get('token');
-    $response = Http::withToken($token)->put("http://127.0.0.1:8000/api/users/{$id}", $data);
+    $response = Http::withToken($token)->put("https://rallycarbacken-production.up.railway.app
+/api/users/{$id}", $data);
     if ($response->successful()) {
         return redirect()->route('usuario.index')->with('success', 'Usuario y vehículo actualizados correctamente.');
     }
@@ -127,7 +136,8 @@ public function create()
     public function destroy($id)
     {
          $token = Session::get('token');
-        $response = Http::withToken($token)->delete("http://127.0.0.1:8000/api/users/{$id}");
+        $response = Http::withToken($token)->delete("https://rallycarbacken-production.up.railway.app
+/api/users/{$id}");
 
         if ($response->successful()) {
             return redirect()->route('usuario.index')->with('success', 'Usuario eliminado correctamente.');
