@@ -72,6 +72,16 @@
 
         <h2>Crear Novedad</h2>
 
+        @if ($errors->any())
+    <div style="background:#fee;padding:10px;border-radius:8px;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <form 
             action="{{ route('novedad.store') }}"
             method="POST"
