@@ -56,36 +56,35 @@ public function store(Request $request)
 
     $httpRequest = Http::withToken($token);
 
-    // Campos de texto
-    $httpRequest = $httpRequest
-        ->attach('titulo', $request->titulo)
-        ->attach('descripcion', $request->descripcion)
-        ->attach('vehiculo_id', (string) $request->vehiculo_id);
-
-    // Archivos
+    // 👉 SOLO archivos con attach
     if ($request->hasFile('imagenes')) {
         foreach ($request->file('imagenes') as $index => $file) {
-            $httpRequest = $httpRequest->attach(
-                "imagenes[$index]",  // esto es crucial
+            $httpRequest->attach(
+                "imagenes[$index]",
                 fopen($file->getRealPath(), 'r'),
                 $file->getClientOriginalName()
             );
         }
     }
 
-    $response = $httpRequest->post('https://rallycarbacken-production.up.railway.app/api/novedades');
+    // 👉 TEXTO VA EN EL BODY
+    $response = $httpRequest->post(
+        'https://rallycarbacken-production.up.railway.app/api/novedades',
+        [
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'vehiculo_id' => $request->vehiculo_id,
+        ]
+    );
 
-    // Debug si falla
     if (!$response->successful()) {
         dd($response->status(), $response->body());
     }
 
-    return redirect()->route('novedad.index')->with('success', 'Novedad creada correctamente.');
+    return redirect()
+        ->route('novedad.index')
+        ->with('success', 'Novedad creada correctamente.');
 }
-
-
-
-
 
 
     public function edit($id)
