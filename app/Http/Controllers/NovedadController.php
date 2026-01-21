@@ -2,145 +2,157 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Novedad;
+use App\Models\Imagenes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class NovedadController extends Controller
 {
-
-    public function index(request $request)
-    {
-        $token = Session::get('token');
-        $search = $request->input('search'); // obtiene parámetro search del query string
-
-    // Prepara la query para la API, incluye search si viene
-    $queryParams = [];
-
-    if ($search) {
-        $queryParams['search'] = $search;
-    }
-        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades', $queryParams);
-        $novedades = $novedadesResponse->successful() ? $novedadesResponse->json() : [];
-
-        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/users');
-        $usuarios = $usuariosResponse->successful() ? $usuariosResponse->json() : [];
-
-        return view('novedad', compact('novedades', 'usuarios'));
-    }
-
-
-    public function create()
-    {
-        $token = Session::get('token');
-
-        $vehiculosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/vehiculos');
-        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades');
-
-        $novedades = $novedadesResponse->successful() ? $novedadesResponse->json() : [];
-        $vehiculos = $vehiculosResponse->successful() ? $vehiculosResponse->json() : [];
-
-        return view('crearnovedad', compact('novedades','vehiculos'));
-    }
-
-
-public function store(Request $request)
+    /**
+     * Listado de novedades
+     */
+   public function index(Request $request)
 {
-    $token = Session::get('token');
+    $query = Novedad::with(['vehiculo', 'imagenes']);
 
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->where('titulo', 'like', '%' . $search . '%');
+    }
+
+    $novedades = $query->get();
+
+    return response()->json($novedades);
+}
+    /**
+     * Crear una novedad
+     */
+  public function store(Request $request)
+{
+    // Validación de los datos
     $request->validate([
         'titulo' => 'required|string|max:255',
         'descripcion' => 'required|string|max:1000',
         'vehiculo_id' => 'required|integer',
-        'imagenes.*' => 'nullable|image|mimes:jpg,jpeg,png|max:10240', // Cada imagen no debe superar los 10MB
+        'imagenes.*' => 'nullable|image|mimes:jpg,jpeg,png|max:10240', // máximo 10MB por imagen
     ]);
 
+    $token = Session::get('token');
+
+    // Preparar la petición HTTP con token
     $httpRequest = Http::withToken($token);
 
-    // Adjuntar las imágenes al request multipart
+    // Adjuntar imágenes si existen
     if ($request->hasFile('imagenes')) {
         foreach ($request->file('imagenes') as $index => $file) {
             $httpRequest = $httpRequest->attach(
-                "imagenes[$index]", // nombre del campo con índice, igual que en formulario
-                file_get_contents($file->getRealPath()),
+                "imagenes[$index]", // nombre del campo con índice
+                file_get_contents($file->getRealPath()), 
                 $file->getClientOriginalName()
             );
         }
     }
 
-    // Enviar el resto de datos como campos normales
-    $response = $httpRequest->post('https://rallycarbacken-production.up.railway.app/api/novedades', [
-        'titulo' => $request->titulo,
-        'descripcion' => $request->descripcion,
-        'vehiculo_id' => $request->vehiculo_id,
+    // Adjuntar los campos normales como multipart
+    $httpRequest = $httpRequest->asMultipart([
+        [
+            'name' => 'titulo',
+            'contents' => $request->titulo
+        ],
+        [
+            'name' => 'descripcion',
+            'contents' => $request->descripcion
+        ],
+        [
+            'name' => 'vehiculo_id',
+            'contents' => $request->vehiculo_id
+        ],
     ]);
 
+    // Enviar la petición POST al backend
+    $response = $httpRequest->post('https://rallycarbacken-production.up.railway.app/api/novedades');
+
+    // Manejo de la respuesta
     if ($response->successful()) {
-        return redirect()->route('novedad.index')->with('success', 'Novedad creada exitosamente.');
+        return redirect()->route('novedad.index')
+                         ->with('success', 'Novedad creada exitosamente.');
     }
 
+    // Si falla, mostrar el error del backend
     return back()->with('error', 'Error al registrar la novedad: ' . $response->body());
 }
 
-
-
-    public function edit($id)
+    public function show($id)
     {
-        $token = Session::get('token');
+        $novedad = Novedad::with(['vehiculo', 'imagenes'])->find($id);
 
-        $responseNovedad = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app/api/novedades/{$id}");
-        $novedad = $responseNovedad->successful() ? $responseNovedad->json() : null;
+        if (!$novedad) {
+            return response()->json(['message' => 'Novedad no encontrada'], 404);
+        }
 
-        $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/vehiculos');
-        $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
-
-        return view('editarnovedad', compact('novedad', 'vehiculos'));
+        return response()->json($novedad);
     }
 
-
-
+    /**
+     * Actualizar novedad
+     */
     public function update(Request $request, $id)
     {
-        $token = Session::get('token');
+        $novedad = Novedad::find($id);
+
+        if (!$novedad) {
+            return response()->json(['message' => 'Novedad no encontrada'], 404);
+        }
 
         $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:1000',
-            'vehiculo_id' => 'required|integer',
+            'titulo' => 'sometimes|string|max:255',
+            'descripcion' => 'sometimes|string|max:1000',
+            'vehiculo_id' => 'sometimes|exists:vehiculos,id',
+            'imagenes.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = [
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'vehiculo_id' => $request->vehiculo_id,
-        ];
+        $novedad->update($request->only(['titulo', 'descripcion', 'vehiculo_id']));
 
-        $response = Http::withToken($token)->put(
-            "https://rallycarbacken-production.up.railway.app/api/novedades/{$id}",
-            $data
-        );
+        // Nuevas imágenes
+        if ($request->hasFile('imagenes')) {
+            foreach ($request->file('imagenes') as $file) {
+                $path = $file->store('imagenes_novedades', 'public');
 
-        if ($response->successful()) {
-            return redirect()->route('novedad.index')->with('success', 'Novedad actualizada correctamente.');
+                Imagenes::create([
+                    'novedad_id' => $novedad->id,
+                    'ruta' => $path,
+                ]);
+            }
         }
 
-        return back()->with('error', 'Error al actualizar la novedad: ' . $response->body());
+        $novedad->load('imagenes', 'vehiculo');
+
+        return response()->json([
+            'message' => 'Novedad actualizada correctamente',
+            'data' => $novedad,
+        ]);
     }
 
-
-
+    /**
+     * Eliminar novedad
+     */
     public function destroy($id)
     {
-        $token = Session::get('token');
+        $novedad = Novedad::with('imagenes')->find($id);
 
-        $response = Http::withToken($token)->delete(
-            "https://rallycarbacken-production.up.railway.app/api/novedades/{$id}"
-        );
-
-        if ($response->successful()) {
-            return redirect()->route('novedad.index')->with('success', 'Novedad eliminada correctamente');
+        if (!$novedad) {
+            return response()->json(['message' => 'Novedad no encontrada'], 404);
         }
 
-        return back()->with('error', 'No se pudo eliminar la novedad');
+        // Borrar imágenes físicas y de BD
+        foreach ($novedad->imagenes as $img) {
+            Storage::disk('public')->delete($img->ruta);
+            $img->delete();
+        }
+
+        $novedad->delete();
+
+        return response()->json(['message' => 'Novedad eliminada correctamente']);
     }
 }
