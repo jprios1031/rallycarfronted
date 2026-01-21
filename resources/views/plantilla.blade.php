@@ -192,7 +192,9 @@
       </button>
       <h1 class="text-lg sm:text-xl font-semibold">@yield('titulo','Dashboard')</h1>
     </header>
-
+ <main class="flex-1 p-4 sm:p-6 overflow-x-auto">
+      @yield('contenido')
+    </main>
     <!-- Footer -->
     <footer class="bg-white text-center text-sm text-gray-500 py-4 border-t mt-auto">
       <p>&copy; {{ date('Y') }} RallyCars · Pereira, Risaralda</p>
