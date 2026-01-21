@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class RegisterclienteController extends Controller
+class RegisterClienteController  extends Controller
 {
     public function showForm()
     {
