@@ -76,12 +76,7 @@ public function store(Request $request)
         'https://rallycarbacken-production.up.railway.app/api/novedades'
     );
 
-    if (!$response->successful()) {
-        dd(
-            'STATUS:', $response->status(),
-            'BODY:', $response->body()
-        );
-    }
+
 
     return redirect()
         ->route('novedad.index')
