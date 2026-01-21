@@ -192,7 +192,7 @@
       </button>
       <h1 class="text-lg sm:text-xl font-semibold">@yield('titulo','Dashboard')</h1>
     </header>
- <main class="flex-1 p-4 sm:p-6 overflow-x-auto">
+ <main class="flex-1 p-4 sm:p-6">
       @yield('contenido')
     </main>
     <!-- Footer -->
