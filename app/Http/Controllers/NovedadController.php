@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class NovedadController extends Controller
 {
-
+ 
     public function index(request $request)
     {
         $token = Session::get('token');
