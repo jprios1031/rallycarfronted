@@ -5,29 +5,63 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NovedadController extends Controller
 {
- 
-    public function index(request $request)
-    {
-        $token = Session::get('token');
-        $search = $request->input('search'); // obtiene parámetro search del query string
 
-    // Prepara la query para la API, incluye search si viene
-    $queryParams = [];
+public function index(Request $request)
+{
+    $token = Session::get('token');
 
-    if ($search) {
-        $queryParams['search'] = $search;
+    // Parámetros de búsqueda y paginación
+    $queryParams = [
+        'page' => $request->get('page', 1),
+    ];
+
+    if ($request->filled('search')) {
+        $queryParams['search'] = $request->search;
     }
-        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades', $queryParams);
-        $novedades = $novedadesResponse->successful() ? $novedadesResponse->json() : [];
 
-        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/users');
-        $usuarios = $usuariosResponse->successful() ? $usuariosResponse->json() : [];
+    // Llamada a la API (GET)
+    $response = Http::withToken($token)->get(
+        'https://rallycarbacken-production.up.railway.app/api/novedades',
+        $queryParams
+    );
 
-        return view('novedad', compact('novedades', 'usuarios'));
+    if (!$response->successful()) {
+        return view('novedad', [
+            'novedades' => collect(),
+            'usuarios' => [],
+        ]);
     }
+
+    $apiData = $response->json();
+
+    // Reconstruir paginador Laravel
+    $novedades = new LengthAwarePaginator(
+        $apiData['data'],
+        $apiData['total'],
+        $apiData['per_page'],
+        $apiData['current_page'],
+        [
+            'path' => request()->url(),
+            'query' => request()->query(),
+        ]
+    );
+
+    // Usuarios
+    $usuariosResponse = Http::withToken($token)->get(
+        'https://rallycarbacken-production.up.railway.app/api/users'
+    );
+
+    $usuarios = $usuariosResponse->successful()
+        ? $usuariosResponse->json()
+        : [];
+
+    return view('novedad', compact('novedades', 'usuarios'));
+}
+
 
 
     public function create()
