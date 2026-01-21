@@ -164,7 +164,7 @@
                                     @endphp
                                     <div class="img-wrapper">
                                         <img
-                                            src="{{ 'http://127.0.0.1:8000/storage/imagenes_novedades/' . $nombreImagen }}"
+                                            src="{{ 'https://rallycarbacken-production.up.railway.app/storage/imagenes_novedades/' . $nombreImagen }}"
                                             alt="Imagen de la novedad">
                                     </div>
                                 @endforeach
