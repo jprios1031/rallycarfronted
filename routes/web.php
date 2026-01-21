@@ -25,7 +25,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('iniciocliente', [InicioclienteController::class, 'index'])->name('iniciocliente.index');
     Route::post('iniciocliente', [InicioclienteController::class, 'login'])->name('iniciocliente.login');
     Route::get('registercliente', [RegisterclienteController::class, 'showForm'])->name('registercliente.showForm');
-    Route::post('registercliente', [RegisterclienteController::class, 'store'])->name('registercliente.store');
+    Route::post('registercliente', [RegisterclienteController::class, 'store'])->name('usuario.store');
     Route::post('/logout-cliente', [InicioclienteController::class, 'logout'])->name('logoutcliente');
 
     // ADMIN
