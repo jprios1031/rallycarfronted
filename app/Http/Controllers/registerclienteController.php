@@ -20,8 +20,7 @@ class RegisterclienteController extends Controller
         'password' => 'required|min:6|confirmed',
     ]);
 
-    $response = Http::post('https://rallycarbacken-production.up.railway.app
-/api/register', [
+    $response = Http::post('https://rallycarbacken-production.up.railway.app/api/register', [
         'name' => $request->name,
         'email' => $request->email,
         'password' => $request->password,

@@ -20,12 +20,10 @@ class NovedadController extends Controller
     if ($search) {
         $queryParams['search'] = $search;
     }
-        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/novedades', $queryParams);
+        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades', $queryParams);
         $novedades = $novedadesResponse->successful() ? $novedadesResponse->json() : [];
 
-        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/users');
+        $usuariosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/users');
         $usuarios = $usuariosResponse->successful() ? $usuariosResponse->json() : [];
 
         return view('novedad', compact('novedades', 'usuarios'));
@@ -36,10 +34,8 @@ class NovedadController extends Controller
     {
         $token = Session::get('token');
 
-        $vehiculosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/vehiculos');
-        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/novedades');
+        $vehiculosResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/vehiculos');
+        $novedadesResponse = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/novedades');
 
         $novedades = $novedadesResponse->successful() ? $novedadesResponse->json() : [];
         $vehiculos = $vehiculosResponse->successful() ? $vehiculosResponse->json() : [];
@@ -73,8 +69,7 @@ public function store(Request $request)
     }
 
     // Enviar el resto de datos como campos normales
-    $response = $httpRequest->post('https://rallycarbacken-production.up.railway.app
-/api/novedades', [
+    $response = $httpRequest->post('https://rallycarbacken-production.up.railway.app/api/novedades', [
         'titulo' => $request->titulo,
         'descripcion' => $request->descripcion,
         'vehiculo_id' => $request->vehiculo_id,
@@ -93,12 +88,10 @@ public function store(Request $request)
     {
         $token = Session::get('token');
 
-        $responseNovedad = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app
-/api/novedades/{$id}");
+        $responseNovedad = Http::withToken($token)->get("https://rallycarbacken-production.up.railway.app/api/novedades/{$id}");
         $novedad = $responseNovedad->successful() ? $responseNovedad->json() : null;
 
-        $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/vehiculos');
+        $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/vehiculos');
         $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
 
         return view('editarnovedad', compact('novedad', 'vehiculos'));
@@ -123,8 +116,7 @@ public function store(Request $request)
         ];
 
         $response = Http::withToken($token)->put(
-            "https://rallycarbacken-production.up.railway.app
-/api/novedades/{$id}",
+            "https://rallycarbacken-production.up.railway.app/api/novedades/{$id}",
             $data
         );
 
@@ -142,8 +134,7 @@ public function store(Request $request)
         $token = Session::get('token');
 
         $response = Http::withToken($token)->delete(
-            "https://rallycarbacken-production.up.railway.app
-/api/novedades/{$id}"
+            "https://rallycarbacken-production.up.railway.app/api/novedades/{$id}"
         );
 
         if ($response->successful()) {

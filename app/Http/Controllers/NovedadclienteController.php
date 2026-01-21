@@ -11,8 +11,7 @@ class NovedadclienteController extends Controller
     {
         $usuario = auth()->user();
 
-        $response = Http::get('https://rallycarbacken-production.up.railway.app
-/api/novedades');
+        $response = Http::get('https://rallycarbacken-production.up.railway.app/api/novedades');
         $novedades = $response->successful() ? $response->json() : [];
 
         $userId = $usuario->id;

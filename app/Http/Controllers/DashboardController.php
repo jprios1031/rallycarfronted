@@ -18,25 +18,20 @@ class DashboardController extends Controller
         $fechaFin = $request->input('fecha_fin');
 
         //enviamos la peticion a la api para obtener los vehiculos
-        $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/vehiculos');
+        $responseVehiculos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/vehiculos');
         $vehiculos = $responseVehiculos->successful() ? $responseVehiculos->json() : [];
 
         //enviamos la peticion a la api para obtener las novedades
-        $responseNovedades = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/novedades');
+        $responseNovedades = Http::withToken($token)->get('https://rallycarbacken-production.up.railwa.app/api/novedades');
         $novedades = $responseNovedades->successful() ? $responseNovedades->json() : [];
         //enviamos la peticion a la api para obtener los usuarios
-        $responseusers = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/users');
+        $responseusers = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/users');
         $Users = $responseusers->successful() ? $responseusers->json() : [];
         //enviamos la peticion a la api para obtener las ventas
-        $responseventas = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/ventas');
+        $responseventas = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/ventas');
         $ventas = $responseventas->successful() ? $responseventas->json() : [];
         //enviamos la peticion a la api para obtener los gastos
-        $responsegastos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app
-/api/gastos');
+        $responsegastos = Http::withToken($token)->get('https://rallycarbacken-production.up.railway.app/api/gastos');
         $gastos = $responsegastos->successful() ? $responsegastos->json() : [];
 
         if ($fechaInicio && $fechaFin) {

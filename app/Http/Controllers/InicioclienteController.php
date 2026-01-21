@@ -21,8 +21,7 @@ public function login(Request $request)
         'password' => 'required',
     ]);
 
-    $response = Http::post('https://rallycarbacken-production.up.railway.app
-/api/login', [
+    $response = Http::post('https://rallycarbacken-production.up.railway.app/api/login', [
         'email' => $request->email,
         'password' => $request->password,
     ]);
