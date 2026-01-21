@@ -54,12 +54,17 @@ public function store(Request $request)
         'imagenes.*' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
     ]);
 
-    $httpRequest = Http::withToken($token);
+    $http = Http::withToken($token)->asMultipart();
 
-    // 👉 SOLO archivos con attach
+    // Campos de texto
+    $http->attach('titulo', $request->titulo);
+    $http->attach('descripcion', $request->descripcion);
+    $http->attach('vehiculo_id', $request->vehiculo_id);
+
+    // Archivos
     if ($request->hasFile('imagenes')) {
         foreach ($request->file('imagenes') as $index => $file) {
-            $httpRequest->attach(
+            $http->attach(
                 "imagenes[$index]",
                 fopen($file->getRealPath(), 'r'),
                 $file->getClientOriginalName()
@@ -67,18 +72,15 @@ public function store(Request $request)
         }
     }
 
-    // 👉 TEXTO VA EN EL BODY
-    $response = $httpRequest->post(
-        'https://rallycarbacken-production.up.railway.app/api/novedades',
-        [
-            'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
-            'vehiculo_id' => $request->vehiculo_id,
-        ]
+    $response = $http->post(
+        'https://rallycarbacken-production.up.railway.app/api/novedades'
     );
 
     if (!$response->successful()) {
-        dd($response->status(), $response->body());
+        dd(
+            'STATUS:', $response->status(),
+            'BODY:', $response->body()
+        );
     }
 
     return redirect()
