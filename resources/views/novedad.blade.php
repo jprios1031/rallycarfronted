@@ -148,7 +148,7 @@
                             @foreach($novedad['imagenes'] as $img)
                                 @if(!empty($img['ruta']))
                                     <img 
-                                        src="{{ 'http://127.0.0.1:8000/storage/' . $img['ruta'] }}"
+                                        src="{{ 'https://rallycarbacken-production.up.railway.app/storage/' . $img['ruta'] }}"
                                         alt="Imagen de novedad"
                                         width="180"
                                         height="120"
